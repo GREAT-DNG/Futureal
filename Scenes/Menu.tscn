@@ -1,0 +1,167 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Fonts/Terminus.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scripts/Menu.gd" type="Script" id=3]
+[ext_resource path="res://Theme.tres" type="Theme" id=5]
+
+[sub_resource type="DynamicFont" id=10]
+size = 32
+font_data = ExtResource( 1 )
+
+[node name="Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 5 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ]
+}
+
+[node name="MainPanel" type="Panel" parent="."]
+margin_right = 800.0
+margin_bottom = 600.0
+
+[node name="FuturealLabel" type="Label" parent="MainPanel"]
+margin_left = 210.0
+margin_top = 110.0
+margin_right = 400.0
+margin_bottom = 150.0
+rect_scale = Vector2( 2, 2 )
+custom_fonts/font = SubResource( 10 )
+text = "FUTUREAL"
+align = 1
+valign = 1
+
+[node name="PlayButton" type="Button" parent="MainPanel"]
+margin_left = 210.0
+margin_top = 210.0
+margin_right = 590.0
+margin_bottom = 290.0
+theme = ExtResource( 5 )
+text = "Play"
+
+[node name="SettingsButton" type="Button" parent="MainPanel"]
+margin_left = 210.0
+margin_top = 310.0
+margin_right = 590.0
+margin_bottom = 390.0
+theme = ExtResource( 5 )
+disabled = true
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="MainPanel"]
+margin_left = 210.0
+margin_top = 410.0
+margin_right = 590.0
+margin_bottom = 490.0
+theme = ExtResource( 5 )
+text = "Quit"
+
+[node name="PlayPanel" type="Panel" parent="."]
+visible = false
+margin_right = 800.0
+margin_bottom = 600.0
+
+[node name="BackButton" type="Button" parent="PlayPanel"]
+margin_left = 30.0
+margin_top = 30.0
+margin_right = 190.0
+margin_bottom = 90.0
+text = "Back"
+
+[node name="Label" type="Label" parent="PlayPanel"]
+margin_left = 310.0
+margin_top = 30.0
+margin_right = 400.0
+margin_bottom = 62.0
+rect_scale = Vector2( 2, 2 )
+text = "Play"
+align = 1
+valign = 1
+
+[node name="LoadButton" type="Button" parent="PlayPanel"]
+margin_left = 610.0
+margin_top = 30.0
+margin_right = 770.0
+margin_bottom = 90.0
+text = "Load"
+
+[node name="Level0Button" type="Button" parent="PlayPanel"]
+margin_left = 210.0
+margin_top = 210.0
+margin_right = 590.0
+margin_bottom = 290.0
+theme = ExtResource( 5 )
+text = "Level 1"
+
+[node name="Level1Button" type="Button" parent="PlayPanel"]
+margin_left = 210.0
+margin_top = 310.0
+margin_right = 590.0
+margin_bottom = 390.0
+theme = ExtResource( 5 )
+disabled = true
+text = "Level 2"
+
+[node name="Level2Button" type="Button" parent="PlayPanel"]
+margin_left = 210.0
+margin_top = 410.0
+margin_right = 590.0
+margin_bottom = 490.0
+theme = ExtResource( 5 )
+disabled = true
+text = "Level 3"
+
+[node name="FileDialog" type="FileDialog" parent="PlayPanel"]
+margin_right = 800.0
+margin_bottom = 600.0
+window_title = "Open scene file"
+mode = 0
+access = 2
+filters = PoolStringArray( "*.tscn" )
+show_hidden_files = true
+current_dir = "/"
+current_path = "/"
+
+[node name="SettingsPanel" type="Panel" parent="."]
+visible = false
+margin_right = 800.0
+margin_bottom = 600.0
+
+[node name="BackButton" type="Button" parent="SettingsPanel"]
+margin_left = 30.0
+margin_top = 30.0
+margin_right = 190.0
+margin_bottom = 90.0
+text = "Back"
+
+[node name="AcceptButton" type="Button" parent="SettingsPanel"]
+margin_left = 610.0
+margin_top = 30.0
+margin_right = 770.0
+margin_bottom = 90.0
+text = "Accept"
+
+[node name="Label" type="Label" parent="SettingsPanel"]
+margin_left = 270.0
+margin_top = 30.0
+margin_right = 400.0
+margin_bottom = 62.0
+rect_scale = Vector2( 2, 2 )
+text = "Settings"
+align = 1
+valign = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="button_down" from="MainPanel/PlayButton" to="." method="_on_PlayButton_button_down"]
+[connection signal="button_down" from="MainPanel/SettingsButton" to="." method="_on_SettingsButton_button_down"]
+[connection signal="button_down" from="MainPanel/QuitButton" to="." method="_on_QuitButton_button_down"]
+[connection signal="button_down" from="PlayPanel/BackButton" to="." method="_on_BackButton_button_down"]
+[connection signal="button_down" from="PlayPanel/LoadButton" to="." method="_on_LoadButton_button_down"]
+[connection signal="button_down" from="PlayPanel/Level0Button" to="." method="_on_Level1Button_button_down"]
+[connection signal="button_down" from="PlayPanel/Level1Button" to="." method="_on_Level2Button_button_down"]
+[connection signal="button_down" from="PlayPanel/Level2Button" to="." method="_on_Level3Button_button_down"]
+[connection signal="file_selected" from="PlayPanel/FileDialog" to="." method="_on_FileDialog_file_selected"]
+[connection signal="button_down" from="SettingsPanel/BackButton" to="." method="_on_BackButton_button_down"]
+[connection signal="button_down" from="SettingsPanel/AcceptButton" to="." method="_on_AcceptButton_button_down"]

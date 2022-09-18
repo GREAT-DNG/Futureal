@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/5 Shot.wav-c677c33c003772421a5f31707e5cb09d.sample"
+
+[deps]
+
+source_file="res://Audios/Guns/5 Shot.wav"
+dest_files=[ "res://.import/5 Shot.wav-c677c33c003772421a5f31707e5cb09d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
