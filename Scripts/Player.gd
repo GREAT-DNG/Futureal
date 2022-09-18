@@ -7,7 +7,7 @@ var game_saver = load("res://Scripts/GameSaver.gd").new()
 
 var motion = Vector2()
 var up = Vector2(0, -1)
-var speed = 150
+var speed = 160
 var gravitation = 10
 var max_gravitation = 500
 var jump = 500
@@ -18,7 +18,7 @@ var shot_timer = Timer.new()
 var reload_timer = Timer.new()
 var final_timer = Timer.new()
 
-var is_dead = false # или прошел игру
+var is_dead = false # or complete game
 
 var money = 0
 var health = 10.0
@@ -169,7 +169,7 @@ func _physics_process(delta):
 	# warning-ignore:return_value_discarded
 	move_and_slide(motion, up)
 	
-# Возвращает позицию мыши относительно нуля сцены 
+# Returns the position of the mouse relative to scene zero
 func get_mouse_position():
 	var viewport_start_position = Vector2(0, 0)
 	viewport_start_position.x = position.x - get_viewport().size.x / 2

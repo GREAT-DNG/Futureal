@@ -3,6 +3,11 @@ extends Control
 var first_scene
 var game_saver = load("res://Scripts/GameSaver.gd").new()
 
+# warning-ignore:unused_argument
+func _input(event):
+	if Input.is_key_pressed(KEY_F1):
+			$HelpPanel.show()
+	
 # Main Panel
 func _on_PlayButton_button_down():
 	$MainPanel.hide()
@@ -18,6 +23,9 @@ func _on_PlayButton_button_down():
 	
 	for i in range(last_completed_level):
 		get_node(NodePath("PlayPanel/Level" + var2str(i) + "Button")).disabled = false
+	
+func _on_HelpOKButton_button_down():
+	$HelpPanel.hide()
 	
 func _on_SettingsButton_button_down():
 	$MainPanel.hide()
@@ -36,6 +44,7 @@ func _on_AcceptButton_button_down():
 	$SettingsPanel.hide()
 	$MainPanel.show()
 	
+# Play Panel
 func _on_Level1Button_button_down():
 	# warning-ignore:return_value_discarded
 	get_tree().change_scene_to(load("res://Scenes/Levels/Level1.tscn"))
