@@ -53,11 +53,11 @@ func _process(delta):
 		get_tree().paused = true
 		
 	if get_viewport().get_mouse_position().x < 400:
-		get_child(2).flip_v = true
+		$Gun/GunSprite.flip_v = true
 	else:
-		get_child(2).flip_v = false
+		$Gun/GunSprite.flip_v = false
 	
-	$GunSprite.look_at(get_mouse_position())
+	$Gun/GunSprite.look_at(get_mouse_position())
 	
 # warning-ignore:unused_argument
 func _input(event):
@@ -150,9 +150,19 @@ func _physics_process(delta):
 	if Input.is_action_pressed("left") and !Input.is_action_pressed("right"):
 		motion.x = -speed
 		$AnimatedSprite.play("Run_L")
+		if !is_on_floor():
+			$WalkAudioStreamPlayer2D.stop()
+		elif !$WalkAudioStreamPlayer2D.playing:
+			$WalkAudioStreamPlayer2D.stream = load("res://Audios/Player/Steps" + var2str(int(rand_range(0, 2))) + ".wav")
+			$WalkAudioStreamPlayer2D.play()
 	elif Input.is_action_pressed("right") and !Input.is_action_pressed("left"):
 		motion.x = speed
 		$AnimatedSprite.play("Run_R")
+		if !is_on_floor():
+			$WalkAudioStreamPlayer2D.stop()
+		elif !$WalkAudioStreamPlayer2D.playing:
+			$WalkAudioStreamPlayer2D.stream = load("res://Audios/Player/Steps" + var2str(int(rand_range(0, 2))) + ".wav")
+			$WalkAudioStreamPlayer2D.play()
 	else:
 		motion.x = 0
 		
@@ -160,6 +170,8 @@ func _physics_process(delta):
 			$AnimatedSprite.play("Wait", true)
 		elif $AnimatedSprite.animation == "Run_L":
 			$AnimatedSprite.play("Wait")
+			
+		$WalkAudioStreamPlayer2D.stop()
 		
 	if Input.is_action_pressed("shot") and guns_collection[active_gun_number].is_automatic:
 		shot()
@@ -204,7 +216,7 @@ func change_gun(var gun_id, var is_new_gun = false):
 		
 	$GunSprite.texture = guns_manager.get_gun_sprite(guns_collection[active_gun_number].id)
 	shot_timer.wait_time = guns_collection[active_gun_number].rate
-	$AudioStreamPlayer2D.stream = guns_manager.get_gun_shot_sound(guns_collection[active_gun_number].id)
+	$Gun/GunAudioStreamPlayer2D.stream = guns_manager.get_gun_shot_sound(guns_collection[active_gun_number].id)
 	$UI.refresh_panel(health, money, guns_collection[active_gun_number])
 	
 func reload():
@@ -223,7 +235,7 @@ func shot():
 	
 	shot_timer.start()
 	
-	$AudioStreamPlayer2D.play()
+	$Gun/GunAudioStreamPlayer2D.play()
 	
 #	if get_viewport().get_mouse_position().x < 400:
 #		$AnimatedSprite.play("Shot_R")
