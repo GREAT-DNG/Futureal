@@ -1,8 +1,10 @@
 extends KinematicBody2D
 
-export(int) var gun_id
-export(bool) var is_boss
+export(int) var health = 10
+export(float) var lethargy = 1.0
+export(int, 0, 6) var gun_id
 export(bool) var shot_always
+export(bool) var can_complete_game
 
 var motion = Vector2 ()
 var gravitation = 10
@@ -12,7 +14,6 @@ var up = Vector2 (0, -1)
 var gun
 var guns_manager = load("res://Scripts/GunsManager.gd").new()
 
-var health = 10
 var is_dead = false
 
 var shot_timer = Timer.new()
@@ -22,16 +23,10 @@ var reload_timer = Timer.new()
 func _ready():
 	randomize()
 	
-	if is_boss:
-		health = 25
-	
 	gun = guns_manager.get_gun(gun_id)
 	
 	add_child(shot_timer)
-	if !is_boss:
-		shot_timer.start(gun.rate + rand_range(0.5, 1))
-	else:
-		shot_timer.start(gun.rate + 0.6)
+	shot_timer.start(gun.rate + rand_range(0.5, lethargy))
 	shot_timer.connect("timeout", self, "shot")
 	
 	add_child(sprite_timer)
@@ -49,21 +44,21 @@ func _ready():
 	
 # warning-ignore:unused_argument
 func _process(delta):
-	if $"../../Player".position.x < position.x:
+	if $"../../../Player".position.x < position.x:
 		$GunSprite.flip_v = true
 	else:
 		$GunSprite.flip_v = false
 		
-	$GunSprite.look_at($"../../Player".position)
+	$GunSprite.look_at($"../../../Player".position)
 		
 	if health <= 0 and !is_dead:
 		$HealthLabel.hide()
 		remove_child($CollisionShape2D)
-		$"../../Player".add_money(5)
+		$"../../../Player".add_money(5)
 		is_dead = true
 		
-		if is_boss:
-			$"../../Player".game_complete()
+		if can_complete_game:
+			$"../../../Player".game_complete()
 	
 # warning-ignore:unused_argument
 func _physics_process(delta):
@@ -90,10 +85,7 @@ func hit (var power):
 	
 func reload():
 	gun.loaded_bullets = gun.clip_size
-	if !is_boss:
-		shot_timer.start(gun.rate + rand_range(0.5, 1))
-	else:
-		shot_timer.start(gun.rate + 0.5)
+	shot_timer.start(gun.rate + rand_range(0.5, lethargy))
 	
 func shot():
 	if is_dead:
@@ -104,10 +96,7 @@ func shot():
 			return
 	
 	if gun.loaded_bullets <= 0:
-		if is_boss:
-			reload_timer.start(gun.reload_time + 1)
-		else:
-			reload_timer.start(gun.reload_time + rand_range(0.5, 1))
+		reload_timer.start(gun.reload_time + rand_range(0.5, lethargy))
 		shot_timer.stop()
 		return
 	
@@ -115,8 +104,8 @@ func shot():
 	
 	var result
 	
-	if $"../../Player" != null:
-		result = get_world_2d().direct_space_state.intersect_ray(position, $"../../Player".position + Vector2(rand_range(15, 50), rand_range(15, 50)), [self])
+	if $"../../../Player" != null:
+		result = get_world_2d().direct_space_state.intersect_ray(position, $"../../../Player".position + Vector2(rand_range(15, 50), rand_range(15, 50)), [self])
 	
 	$AudioStreamPlayer2D.play()
 	

@@ -1,18 +1,17 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scenes/GunItem.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Medchest.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Money.tscn" type="PackedScene" id=4]
 [ext_resource path="res://TileSets/BlocksTileSet.tres" type="TileSet" id=5]
 [ext_resource path="res://TileSets/EnvironmentTileSet.tres" type="TileSet" id=6]
+[ext_resource path="res://Scenes/Enemies/Enemy0.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Lamp.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes/Levels/Level2.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Sprites/Blocks/Block6.png" type="Texture" id=16]
 [ext_resource path="res://Sprites/Blocks/Block1.png" type="Texture" id=17]
 [ext_resource path="res://Scenes/Portal.tscn" type="PackedScene" id=27]
-[ext_resource path="res://Scripts/SecretRoom.gd" type="Script" id=29]
 [ext_resource path="res://Scenes/Tablet.tscn" type="PackedScene" id=30]
 [ext_resource path="res://Scenes/EnemySpawner.tscn" type="PackedScene" id=31]
 
@@ -44,7 +43,7 @@ tile_data = PoolIntArray( -1179590, 2, 0, -1179589, 2, 0, -1179585, 2, 0, -11795
 position = Vector2( 3075, -24 )
 next_level = ExtResource( 12 )
 
-[node name="Moneys" type="Node" parent="."]
+[node name="Moneys" type="Node2D" parent="."]
 
 [node name="Money" parent="Moneys" instance=ExtResource( 4 )]
 position = Vector2( 350, 200 )
@@ -76,37 +75,40 @@ position = Vector2( 1700, -50 )
 [node name="Money10" parent="Moneys" instance=ExtResource( 4 )]
 position = Vector2( 1800, -50 )
 
-[node name="Enemies" type="Node" parent="."]
+[node name="Enemies" type="Node2D" parent="."]
 
-[node name="Enemy" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 250, 450 )
+[node name="0" type="Node2D" parent="Enemies"]
 
-[node name="Enemy2" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( -850, 250 )
-
-[node name="Enemy3" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( -1100, 900 )
-
-[node name="Enemy4" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 1100, 700 )
-
-[node name="Enemy5" parent="Enemies" instance=ExtResource( 3 )]
+[node name="Enemy0" parent="Enemies/0" instance=ExtResource( 7 )]
 position = Vector2( 850, 200 )
 
-[node name="Enemy6" parent="Enemies" instance=ExtResource( 3 )]
+[node name="Enemy1" parent="Enemies/0" instance=ExtResource( 7 )]
+position = Vector2( 250, 450 )
+
+[node name="Enemy2" parent="Enemies/0" instance=ExtResource( 7 )]
+position = Vector2( -850, 250 )
+
+[node name="Enemy3" parent="Enemies/0" instance=ExtResource( 7 )]
+position = Vector2( -1100, 900 )
+
+[node name="Enemy4" parent="Enemies/0" instance=ExtResource( 7 )]
+position = Vector2( 1100, 650 )
+
+[node name="Enemy5" parent="Enemies/0" instance=ExtResource( 7 )]
 position = Vector2( 1625, 250 )
 
-[node name="Enemy7" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 2300, 0 )
-
-[node name="Enemy8" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 2725, 200 )
+[node name="Enemy6" parent="Enemies/0" instance=ExtResource( 7 )]
+position = Vector2( 1600, -250 )
 gun_id = 1
 
-[node name="Enemy9" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 1625, -250 )
+[node name="Enemy7" parent="Enemies/0" instance=ExtResource( 7 )]
+position = Vector2( 2350, 0 )
 
-[node name="MedChests" type="Node" parent="."]
+[node name="Enemy8" parent="Enemies/0" instance=ExtResource( 7 )]
+position = Vector2( 2725, 225 )
+gun_id = 2
+
+[node name="MedChests" type="Node2D" parent="."]
 
 [node name="MedChest" parent="MedChests" instance=ExtResource( 2 )]
 position = Vector2( -750, 950 )
@@ -120,7 +122,7 @@ position = Vector2( 1900, -200 )
 [node name="MedChest4" parent="MedChests" instance=ExtResource( 2 )]
 position = Vector2( 50, 500 )
 
-[node name="Guns" type="Node" parent="."]
+[node name="Guns" type="Node2D" parent="."]
 
 [node name="Gun" parent="Guns" instance=ExtResource( 1 )]
 position = Vector2( 600, 250 )
@@ -134,7 +136,7 @@ gun_id = 2
 position = Vector2( 1625, -450 )
 gun_id = 3
 
-[node name="EnemySpawners" type="Node" parent="."]
+[node name="EnemySpawners" type="Node2D" parent="."]
 
 [node name="EnemySpawner" parent="EnemySpawners" instance=ExtResource( 31 )]
 position = Vector2( 1625, -475 )
@@ -152,7 +154,7 @@ spawn_position = Vector2( 2725, 0 )
 position = Vector2( 3575, 225 )
 spawn_position = Vector2( 3575, 0 )
 
-[node name="Lamps" type="Node" parent="."]
+[node name="Lamps" type="Node2D" parent="."]
 
 [node name="Lamp" parent="Lamps" instance=ExtResource( 11 )]
 position = Vector2( -1125, 225 )
@@ -164,15 +166,14 @@ position = Vector2( 1375, 625 )
 position = Vector2( 1625, -625 )
 
 [node name="Lamp4" parent="Lamps" instance=ExtResource( 11 )]
-position = Vector2( 525, 175 )
+position = Vector2( 540, 180 )
 
 [node name="Lamp5" parent="Lamps" instance=ExtResource( 11 )]
 position = Vector2( -875, 825 )
 
-[node name="SecretRoom" type="Node" parent="."]
-script = ExtResource( 29 )
+[node name="SecretRoom" type="Node2D" parent="."]
 
-[node name="Wall" type="Node" parent="SecretRoom"]
+[node name="Wall" type="Node2D" parent="SecretRoom"]
 
 [node name="Block61" type="Sprite" parent="SecretRoom/Wall"]
 position = Vector2( 3675, 225 )
@@ -205,5 +206,3 @@ current_level_number = 1
 
 [node name="Tablet" parent="." instance=ExtResource( 30 )]
 position = Vector2( 1075, 375 )
-
-[connection signal="body_entered" from="SecretRoom/Area2D" to="SecretRoom" method="_on_Area2D_body_entered"]

@@ -214,7 +214,7 @@ func change_gun(var gun_id, var is_new_gun = false):
 		guns_collection.append(guns_manager.get_gun(gun_id))
 		active_gun_number += 1
 		
-	$GunSprite.texture = guns_manager.get_gun_sprite(guns_collection[active_gun_number].id)
+	$Gun/GunSprite.texture = guns_manager.get_gun_sprite(guns_collection[active_gun_number].id)
 	shot_timer.wait_time = guns_collection[active_gun_number].rate
 	$Gun/GunAudioStreamPlayer2D.stream = guns_manager.get_gun_shot_sound(guns_collection[active_gun_number].id)
 	$UI.refresh_panel(health, money, guns_collection[active_gun_number])

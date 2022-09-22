@@ -218,7 +218,9 @@ align = 1
 valign = 1
 script = ExtResource( 6 )
 
-[node name="Final" type="Node" parent="."]
+[node name="Final" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
 
 [node name="Sprite" type="Sprite" parent="Final"]
 visible = false
