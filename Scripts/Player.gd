@@ -93,26 +93,26 @@ func _input(event):
 		$UI.pause()
 		get_tree().paused = true
 	
-	if Input.is_action_pressed("buy"):
-		if guns_collection[active_gun_number].id == 0:
-			if money >= 3:
-				money -= 3
-				guns_collection[active_gun_number].bullets += 35
-		elif guns_collection[active_gun_number].id == 1 or guns_collection[active_gun_number].id == 2:
-			if money >= 5:
-				money -= 5
-				guns_collection[active_gun_number].bullets += 150
-		elif guns_collection[active_gun_number].id == 3 or guns_collection[active_gun_number].id == 4:
-			if money >= 6:
-				money -= 6
-				guns_collection[active_gun_number].bullets += 150
-		elif guns_collection[active_gun_number].id == 5:
-			if money >= 8:
-				money -= 8
-				guns_collection[active_gun_number].bullets += 5
-		
-		$UI/MessageLabel.show_message("Bullets Buyed")
-		$UI.refresh_panel(health, money, guns_collection[active_gun_number])
+#	if Input.is_action_pressed("buy"):
+#		if guns_collection[active_gun_number].id == 0:
+#			if money >= 3:
+#				money -= 3
+#				guns_collection[active_gun_number].bullets += 35
+#		elif guns_collection[active_gun_number].id == 1 or guns_collection[active_gun_number].id == 2:
+#			if money >= 5:
+#				money -= 5
+#				guns_collection[active_gun_number].bullets += 150
+#		elif guns_collection[active_gun_number].id == 3 or guns_collection[active_gun_number].id == 4:
+#			if money >= 6:
+#				money -= 6
+#				guns_collection[active_gun_number].bullets += 150
+#		elif guns_collection[active_gun_number].id == 5:
+#			if money >= 8:
+#				money -= 8
+#				guns_collection[active_gun_number].bullets += 5
+#
+#		$UI/MessageLabel.show_message("Bullets Buyed")
+#		$UI.refresh_panel(health, money, guns_collection[active_gun_number])
 	
 	if Input.is_action_pressed("next_gun") and !Input.is_action_pressed("previous_gun"):
 		if guns_collection.size() > active_gun_number + 1:
@@ -206,6 +206,12 @@ func hit(var power):
 		health -= power
 	$UI.refresh_panel(health, money, guns_collection[active_gun_number])
 	 
+func give_bullets(var clips):
+	for i in range(guns_collection.size()):
+		guns_collection[i - 1].bullets += clips * guns_collection[i - 1].clip_size
+	
+	$UI.refresh_panel(health, money, guns_collection[active_gun_number])
+	
 func save_game():
 	game_saver.save(current_level_number, health, money, guns_collection)
 	
