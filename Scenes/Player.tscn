@@ -87,7 +87,6 @@ transform = Transform2D( 1, 0, 0, 1, 400, 300 )
 texture = ExtResource( 3 )
 texture_scale = 1.6
 shadow_enabled = true
-shadow_gradient_length = 2.0
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 light_mask = 2
