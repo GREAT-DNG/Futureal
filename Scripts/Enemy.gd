@@ -111,7 +111,7 @@ func shot():
 	
 	if result != null:
 		if result.has("collider"):
-			if result.collider.name.find("Player") != -1:
+			if result.collider.is_in_group("Player"):
 				result.collider.call("hit", gun.power)
 	
 func _on_Enemy_mouse_entered():

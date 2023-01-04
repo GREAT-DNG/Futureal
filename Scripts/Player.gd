@@ -52,7 +52,7 @@ func _process(delta):
 		$UI.player_killed()
 		get_tree().paused = true
 		
-	if get_viewport().get_mouse_position().x < 400:
+	if get_viewport().get_mouse_position().x < get_viewport().size.x / 2:
 		$Gun/GunSprite.flip_v = true
 	else:
 		$Gun/GunSprite.flip_v = false
@@ -257,7 +257,8 @@ func shot():
 	Input.warp_mouse_position(get_viewport().get_mouse_position() + Vector2(rand_range(-20 * guns_collection[active_gun_number].power, 20 * guns_collection[active_gun_number].power), rand_range(-20 * guns_collection[active_gun_number].power, 20 * guns_collection[active_gun_number].power)))
 	
 	if result.has("collider"):
-		if result.collider.name.find("Enemy") != -1:
+		# print(result.collider.name + var2str(result.position))   # debug func
+		if result.collider.is_in_group("Enemies"):
 			result.collider.call("hit", guns_collection[active_gun_number].power)
 	
 	var recoil = (get_mouse_position() - position).normalized() * guns_collection[active_gun_number].recoil
