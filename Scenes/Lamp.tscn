@@ -12,5 +12,6 @@ texture = ExtResource( 2 )
 
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 3 )
+energy = 1.4
 shadow_enabled = true
 shadow_item_cull_mask = 3

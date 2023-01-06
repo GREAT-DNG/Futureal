@@ -2,6 +2,7 @@ extends Control
 
 var first_scene
 var game_saver = load("res://Scripts/GameSaver.gd").new()
+var settings_saver = load("res://Scripts/SettingsSaver.gd").new()
 
 # warning-ignore:unused_argument
 func _input(event):
@@ -28,13 +29,17 @@ func _on_HelpOKButton_button_down():
 	$HelpPanel.hide()
 	
 func _on_SettingsButton_button_down():
+	if settings_saver.is_settings_exsists():
+		$SettingsPanel/FullscreenCheckButton.pressed = settings_saver.get_fullscreen_state()
+		$SettingsPanel/MuteCheckButton.pressed = settings_saver.get_mute_state()
+		$SettingsPanel/AutoreloadCheckButton.pressed = settings_saver.get_autoreload_state()
+	
 	$MainPanel.hide()
 	$SettingsPanel.show()
 	
 func _on_QuitButton_button_down():
 	get_tree().quit(0)
 	
-# Settings Panel
 func _on_BackButton_button_down():
 	$PlayPanel.hide()
 	$SettingsPanel.hide()
@@ -67,3 +72,14 @@ func _on_FileDialog_file_selected(path):
 	else:
 		# warning-ignore:return_value_discarded
 		get_tree().change_scene_to(load("res://Scenes/Menu.tscn"))
+	
+func _on_FullscreenCheckButton_toggled(button_pressed):
+	OS.window_fullscreen = button_pressed
+	settings_saver.save($SettingsPanel/FullscreenCheckButton.pressed, $SettingsPanel/MuteCheckButton.pressed, $SettingsPanel/AutoreloadCheckButton.pressed)
+	
+func _on_MuteCheckButton_toggled(button_pressed):
+	AudioServer.set_bus_mute(0, button_pressed)
+	settings_saver.save($SettingsPanel/FullscreenCheckButton.pressed, $SettingsPanel/MuteCheckButton.pressed, $SettingsPanel/AutoreloadCheckButton.pressed)
+	
+func _on_AutoreloadCheckButton_toggled(button_pressed):
+	settings_saver.save($SettingsPanel/FullscreenCheckButton.pressed, $SettingsPanel/MuteCheckButton.pressed, $SettingsPanel/AutoreloadCheckButton.pressed)

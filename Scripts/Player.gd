@@ -4,6 +4,7 @@ export(int) var current_level_number
 
 var guns_manager = load("res://Scripts/GunsManager.gd").new()
 var game_saver = load("res://Scripts/GameSaver.gd").new()
+var settings_saver = load("res://Scripts/SettingsSaver.gd").new()
 
 var motion = Vector2()
 var up = Vector2(0, -1)
@@ -12,6 +13,7 @@ var gravitation = 10
 var max_gravitation = 500
 var jump = 500
 
+var autoreload = false
 var active_gun_number = 0
 var guns_collection = [guns_manager.get_gun(0)]
 var shot_timer = Timer.new()
@@ -29,6 +31,9 @@ var is_nohit = false
 func _ready():
 	if current_level_number == 0:
 		push_error("\"Player\": Incorrect current_level_number")
+	
+	if settings_saver.is_settings_exsists():
+		autoreload = settings_saver.get_autoreload_state()
 	
 	if game_saver.is_level_complete(current_level_number - 1):
 		health = game_saver.get_health(current_level_number - 1)
@@ -52,7 +57,7 @@ func _process(delta):
 		$UI.player_killed()
 		get_tree().paused = true
 		
-	if get_viewport().get_mouse_position().x < get_viewport().size.x / 2:
+	if get_viewport().get_mouse_position().x < 800 / 2:
 		$Gun/GunSprite.flip_v = true
 	else:
 		$Gun/GunSprite.flip_v = false
@@ -92,28 +97,7 @@ func _input(event):
 	if Input.is_key_pressed(KEY_ESCAPE):
 		$UI.pause()
 		get_tree().paused = true
-	
-#	if Input.is_action_pressed("buy"):
-#		if guns_collection[active_gun_number].id == 0:
-#			if money >= 3:
-#				money -= 3
-#				guns_collection[active_gun_number].bullets += 35
-#		elif guns_collection[active_gun_number].id == 1 or guns_collection[active_gun_number].id == 2:
-#			if money >= 5:
-#				money -= 5
-#				guns_collection[active_gun_number].bullets += 150
-#		elif guns_collection[active_gun_number].id == 3 or guns_collection[active_gun_number].id == 4:
-#			if money >= 6:
-#				money -= 6
-#				guns_collection[active_gun_number].bullets += 150
-#		elif guns_collection[active_gun_number].id == 5:
-#			if money >= 8:
-#				money -= 8
-#				guns_collection[active_gun_number].bullets += 5
-#
-#		$UI/MessageLabel.show_message("Bullets Buyed")
-#		$UI.refresh_panel(health, money, guns_collection[active_gun_number])
-	
+		
 	if Input.is_action_pressed("next_gun") and !Input.is_action_pressed("previous_gun"):
 		if guns_collection.size() > active_gun_number + 1:
 			active_gun_number += 1
@@ -184,8 +168,8 @@ func _physics_process(delta):
 # Returns the position of the mouse relative to scene zero
 func get_mouse_position():
 	var viewport_start_position = Vector2(0, 0)
-	viewport_start_position.x = position.x - get_viewport().size.x / 2
-	viewport_start_position.y = position.y - get_viewport().size.y / 2
+	viewport_start_position.x = position.x - 800 / 2
+	viewport_start_position.y = position.y - 600 / 2
 	
 	return viewport_start_position + get_viewport().get_mouse_position()
 	
@@ -236,6 +220,9 @@ func reload():
 	$UI.refresh_panel(health, money, guns_collection[active_gun_number])
 	
 func shot():
+	if (guns_collection[active_gun_number].loaded_bullets == 0) and autoreload:
+		reload_timer.start(guns_collection[active_gun_number].reload_time)
+	
 	if shot_timer.time_left != 0 or guns_collection[active_gun_number].loaded_bullets == 0 or get_tree().paused:
 		return
 	
@@ -254,7 +241,11 @@ func shot():
 	$UI.refresh_panel(health, money, guns_collection[active_gun_number])
 	
 	randomize()
-	Input.warp_mouse_position(get_viewport().get_mouse_position() + Vector2(rand_range(-20 * guns_collection[active_gun_number].power, 20 * guns_collection[active_gun_number].power), rand_range(-20 * guns_collection[active_gun_number].power, 20 * guns_collection[active_gun_number].power)))
+	Input.warp_mouse_position(get_viewport().get_mouse_position()\
+	 + Vector2(rand_range(-20 * guns_collection[active_gun_number].power,\
+	 20 * guns_collection[active_gun_number].power),\
+	 rand_range(-20 * guns_collection[active_gun_number].power,\
+	 20 * guns_collection[active_gun_number].power)))
 	
 	if result.has("collider"):
 		# print(result.collider.name + var2str(result.position))   # debug func

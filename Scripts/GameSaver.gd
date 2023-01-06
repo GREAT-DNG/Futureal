@@ -13,13 +13,11 @@ func save(var level_num, var health, var money, var guns_collection):
 	
 func get_health(var level_num):
 	save_file.open_encrypted_with_pass("user://F" + var2str(level_num), File.READ, password)
-	var result = parse_json(save_file.get_line()).health
-	return result
+	return parse_json(save_file.get_line()).health
 	
 func get_money(var level_num):
 	save_file.open_encrypted_with_pass("user://F" + var2str(level_num), File.READ, password)
-	var result = int(parse_json(save_file.get_line()).money)
-	return result
+	return int(parse_json(save_file.get_line()).money)
 	
 func get_guns_collection(var level_num):
 	save_file.open_encrypted_with_pass("user://F" + var2str(level_num), File.READ, password)
