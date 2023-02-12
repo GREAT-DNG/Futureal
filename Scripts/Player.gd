@@ -62,7 +62,7 @@ func _process(delta):
 	else:
 		$Gun/GunSprite.flip_v = false
 	
-	$Gun/GunSprite.look_at(get_mouse_position())
+	$Gun/GunSprite.look_at(get_mouse_position_from_zero())
 	
 # warning-ignore:unused_argument
 func _input(event):
@@ -166,12 +166,16 @@ func _physics_process(delta):
 	move_and_slide(motion, up)
 	
 # Returns the position of the mouse relative to scene zero
-func get_mouse_position():
+func get_mouse_position_from_zero():
 	var viewport_start_position = Vector2(0, 0)
 	viewport_start_position.x = position.x - 800 / 2
 	viewport_start_position.y = position.y - 600 / 2
 	
 	return viewport_start_position + get_viewport().get_mouse_position()
+	
+# Returns the ratio of original (800x600) to current resolution
+func get_resolution_ratio():
+	return get_viewport().size.x / 800
 	
 func add_money(var number):
 	money += number
@@ -235,24 +239,20 @@ func shot():
 #	else:
 #		$AnimatedSprite.play("Shot_L")
 	
-	var result = get_world_2d().direct_space_state.intersect_ray(position, get_mouse_position(), [self])
+	var result = get_world_2d().direct_space_state.intersect_ray(position, get_mouse_position_from_zero(), [self])
 	
 	guns_collection[active_gun_number].loaded_bullets -= 1
 	$UI.refresh_panel(health, money, guns_collection[active_gun_number])
 	
 	randomize()
-	Input.warp_mouse_position(get_viewport().get_mouse_position()\
-	 + Vector2(rand_range(-20 * guns_collection[active_gun_number].power,\
-	 20 * guns_collection[active_gun_number].power),\
-	 rand_range(-20 * guns_collection[active_gun_number].power,\
-	 20 * guns_collection[active_gun_number].power)))
+	Input.warp_mouse_position(get_viewport().get_mouse_position() * get_resolution_ratio() + Vector2(rand_range(-20 * guns_collection[active_gun_number].power, 20 * guns_collection[active_gun_number].power), rand_range(-20 * guns_collection[active_gun_number].power, 20 * guns_collection[active_gun_number].power)))
 	
 	if result.has("collider"):
 		# print(result.collider.name + var2str(result.position))   # debug func
 		if result.collider.is_in_group("Enemies"):
 			result.collider.call("hit", guns_collection[active_gun_number].power)
 	
-	var recoil = (get_mouse_position() - position).normalized() * guns_collection[active_gun_number].recoil
+	var recoil = (get_mouse_position_from_zero() - position).normalized() * guns_collection[active_gun_number].recoil
 	recoil.x *= 10
 	recoil.y /= 10
 	motion -= recoil
