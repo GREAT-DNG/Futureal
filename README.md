@@ -15,7 +15,7 @@ The easiest way to build the game:
 7. Select a platform (`Add...` > `Windows`, `Linux`, or `OSX`). If you get an `Export templates for this platform are missing` error, click `Manage Export Templates`, in the window that opens, click the `Download and Install` button. After installation, close the window and return to the export settings (see point 6).
 8. Click the `Export Project` button and select the path where you want to get the binary (I prefer `/Export/PlatformName/`). Wait for the build to finish.
 
-You now have the latest version of the game. You can learn more about the build process in the [engine documentation](https://docs.godotengine.org/en/stable/development/compiling/index.html).
+You now have the latest version of the game. You can learn more about the build process in the [engine documentation](https://docs.godotengine.org/en/stable/tutorials/export/index.html).
 
 ### Downloading a ready build
 :warning: **Attention: The ready build may be *very* outdated and may not contain the latest game features or is not designed for your platform.**
