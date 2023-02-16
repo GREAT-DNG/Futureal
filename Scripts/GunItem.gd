@@ -12,6 +12,8 @@ func _on_Gun_body_entered(body):
 		remove_child(get_node(NodePath("Gun" + var2str(gun_id) + "CollisionPolygon2D")))
 		remove_child($Sprite)
 		remove_child(get_node(NodePath("Gun" + var2str(gun_id) + "LightOccluder2D")))
+		$"../../Player/PickupAudioStreamPlayer2D".stream = load("res://Audios/Player/GunPickup.wav")
+		$"../../Player/PickupAudioStreamPlayer2D".play()
 		$"../../Player".change_gun(gun_id, true)
 	
 func _on_Gun_mouse_entered():

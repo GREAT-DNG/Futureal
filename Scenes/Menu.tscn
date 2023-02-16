@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
+[ext_resource path="res://Audios/Menu Click.wav" type="AudioStream" id=1]
 [ext_resource path="res://Scripts/Menu.gd" type="Script" id=3]
 [ext_resource path="res://Theme.tres" type="Theme" id=5]
 
@@ -218,6 +219,8 @@ align = 1
 icon_align = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -3.0
 
 [connection signal="button_down" from="MainPanel/PlayButton" to="." method="_on_PlayButton_button_down"]
 [connection signal="button_down" from="MainPanel/SettingsButton" to="." method="_on_SettingsButton_button_down"]

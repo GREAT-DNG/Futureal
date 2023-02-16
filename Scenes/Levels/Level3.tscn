@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://TileSets/BlocksTileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://TileSets/EnvironmentTileSet.tres" type="TileSet" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Scenes/Enemies/Boss.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/BulletsPack.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Audios/Background.wav" type="AudioStream" id=12]
 
 [node name="Level" type="Node2D"]
 
@@ -133,3 +134,6 @@ rotation = 3.14159
 current_level_number = 3
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+volume_db = -2.0
+autoplay = true

@@ -1,3 +1,0 @@
-Player_R/L(Right/Light)_D/S(Dynamic/Static)
-Dynamic - идет
-Static - стоит

@@ -7,6 +7,8 @@ func _on_Medchest_body_entered(body):
 		remove_child($Sprite)
 		remove_child($CollisionPolygon2D)
 		remove_child($LightOccluder2D)
+		$"../../Player/PickupAudioStreamPlayer2D".stream = load("res://Audios/Player/ItemPickup.wav")
+		$"../../Player/PickupAudioStreamPlayer2D".play()
 		$"../../Player".hill(hill_power)
 	
 func _on_MedChest_mouse_entered():

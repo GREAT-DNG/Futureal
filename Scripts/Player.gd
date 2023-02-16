@@ -54,6 +54,7 @@ func _ready():
 func _process(delta):
 	if health <= 0 and !is_dead:
 		is_dead = true
+		$DeathStreamPlayer2D.play()
 		$UI.player_killed()
 		get_tree().paused = true
 		
@@ -112,7 +113,7 @@ func _input(event):
 		change_gun(guns_collection[active_gun_number].id)
 		
 	if Input.is_action_pressed("reload"):
-		reload_timer.start(guns_collection[active_gun_number].reload_time)
+		start_reload()
 	
 # warning-ignore:unused_argument
 func _physics_process(delta):
@@ -204,6 +205,8 @@ func save_game():
 	game_saver.save(current_level_number, health, money, guns_collection)
 	
 func change_gun(var gun_id, var is_new_gun = false):
+	reload_timer.stop()
+	
 	if is_new_gun:
 		guns_collection.append(guns_manager.get_gun(gun_id))
 		active_gun_number += 1
@@ -212,6 +215,12 @@ func change_gun(var gun_id, var is_new_gun = false):
 	shot_timer.wait_time = guns_collection[active_gun_number].rate
 	$Gun/GunAudioStreamPlayer2D.stream = guns_manager.get_gun_shot_sound(guns_collection[active_gun_number].id)
 	$UI.refresh_panel(health, money, guns_collection[active_gun_number])
+	
+func start_reload():
+	$Gun/GunAudioStreamPlayer2D.stream = guns_manager.get_gun_reload_sound(active_gun_number)
+	$Gun/GunAudioStreamPlayer2D.play()
+	
+	reload_timer.start(guns_collection[active_gun_number].reload_time)
 	
 func reload():
 	if guns_collection[active_gun_number].bullets <= 0:
@@ -223,9 +232,11 @@ func reload():
 	$UI/MessageLabel.show_message("Reloaded")
 	$UI.refresh_panel(health, money, guns_collection[active_gun_number])
 	
+	$Gun/GunAudioStreamPlayer2D.stream = guns_manager.get_gun_shot_sound(active_gun_number)
+	
 func shot():
 	if (guns_collection[active_gun_number].loaded_bullets == 0) and autoreload:
-		reload_timer.start(guns_collection[active_gun_number].reload_time)
+		start_reload()
 	
 	if shot_timer.time_left != 0 or guns_collection[active_gun_number].loaded_bullets == 0 or get_tree().paused:
 		return
@@ -245,7 +256,7 @@ func shot():
 	$UI.refresh_panel(health, money, guns_collection[active_gun_number])
 	
 	randomize()
-	Input.warp_mouse_position(get_viewport().get_mouse_position() * get_resolution_ratio() + Vector2(rand_range(-20 * guns_collection[active_gun_number].power, 20 * guns_collection[active_gun_number].power), rand_range(-20 * guns_collection[active_gun_number].power, 20 * guns_collection[active_gun_number].power)))
+	Input.warp_mouse_position(get_viewport().get_mouse_position() * get_resolution_ratio() + Vector2(rand_range(-10 * get_resolution_ratio() * guns_collection[active_gun_number].power, 10 * get_resolution_ratio()  * guns_collection[active_gun_number].power), rand_range(-10 * get_resolution_ratio()  * guns_collection[active_gun_number].power, 10 * get_resolution_ratio()  * guns_collection[active_gun_number].power)))
 	
 	if result.has("collider"):
 		# print(result.collider.name + var2str(result.position))   # debug func

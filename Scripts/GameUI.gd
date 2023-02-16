@@ -20,17 +20,23 @@ func refresh_panel(var health, var money, var gun):
 	$Panel/GunLabel.text = gun.name + " " + var2str(gun.bullets) + "/" + var2str(gun.loaded_bullets)
 	
 func _on_ContinueButton_button_down():
+	$AudioStreamPlayer.play()
+	
 	$PausePanel.hide()
 	$Panel.show()
 	get_tree().paused = false
-
+	
 func _on_RestartButton_button_down():
+	$AudioStreamPlayer.play()
+	
 	get_tree().paused = false
 	# warning-ignore:return_value_discarded
 	get_tree().reload_current_scene()
 	get_tree().paused = false
-
+	
 func _on_MenuButton_button_down():
+	$AudioStreamPlayer.play()
+	
 	get_tree().paused = false
 	# warning-ignore:return_value_discarded
 	get_tree().change_scene_to(load("res://Scenes/Menu.tscn"))

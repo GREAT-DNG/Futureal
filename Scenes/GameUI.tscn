@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Theme.tres" type="Theme" id=1]
+[ext_resource path="res://Audios/Menu Click.wav" type="AudioStream" id=2]
 [ext_resource path="res://Sprites/Money.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/Health.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/GameUI.gd" type="Script" id=5]
@@ -219,6 +220,10 @@ theme = ExtResource( 1 )
 text = "Game Complete"
 align = 1
 valign = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -2.0
 
 [connection signal="button_down" from="PausePanel/ContinueButton" to="." method="_on_ContinueButton_button_down"]
 [connection signal="button_down" from="PausePanel/RestartButton" to="." method="_on_RestartButton_button_down"]

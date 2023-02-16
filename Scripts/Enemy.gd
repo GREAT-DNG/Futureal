@@ -85,6 +85,7 @@ func hit (var power):
 	
 func reload():
 	gun.loaded_bullets = gun.clip_size
+	$AudioStreamPlayer2D.stream = guns_manager.get_gun_shot_sound(gun_id)
 	shot_timer.start(gun.rate + rand_range(0.5, lethargy))
 	
 func shot():
@@ -96,6 +97,8 @@ func shot():
 			return
 	
 	if gun.loaded_bullets <= 0:
+		$AudioStreamPlayer2D.stream = guns_manager.get_gun_reload_sound(gun_id)
+		$AudioStreamPlayer2D.play()
 		reload_timer.start(gun.reload_time + rand_range(0.5, lethargy))
 		shot_timer.stop()
 		return

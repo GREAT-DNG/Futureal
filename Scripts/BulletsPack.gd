@@ -7,6 +7,8 @@ func _on_BulletsPack_body_entered(body):
 		remove_child($Sprite)
 		remove_child($CollisionPolygon2D)
 		remove_child($LightOccluder2D)
+		$"../../Player/PickupAudioStreamPlayer2D".stream = load("res://Audios/Player/ItemPickup.wav")
+		$"../../Player/PickupAudioStreamPlayer2D".play()
 		$"../../Player".give_bullets(clips)
 	
 func _on_BulletsPack_mouse_entered():

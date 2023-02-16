@@ -19,7 +19,7 @@ var gun0 = {
 	"id": 0,
 	"power": 0.8,
 	"rate": 0.2,
-	"reload_time": 1,
+	"reload_time": 1.21,
 	"recoil": 5,
 	"bullets": 21,
 	"loaded_bullets": 7,
@@ -32,7 +32,7 @@ var gun1 = {
 	"id": 1,
 	"power": 0.5,
 	"rate": 0.05,
-	"reload_time": 1,
+	"reload_time": 1.11,
 	"recoil": 10,
 	"bullets": 90,
 	"loaded_bullets": 30,
@@ -44,7 +44,7 @@ var gun2 = {
 	"id": 2,
 	"power": 0.6,
 	"rate": 0.05,
-	"reload_time": 1,
+	"reload_time": 1.45,
 	"recoil": 15,
 	"bullets": 90,
 	"loaded_bullets": 30,
@@ -57,7 +57,7 @@ var gun3 = {
 	"id": 3,
 	"power": 1.1,
 	"rate": 0.1,
-	"reload_time": 1,
+	"reload_time": 1.67,
 	"recoil": 20,
 	"bullets": 90,
 	"loaded_bullets": 30,
@@ -69,7 +69,7 @@ var gun4 = {
 	"id": 4,
 	"power": 0.9,
 	"rate": 0.08,
-	"reload_time": 1,
+	"reload_time": 1.16,
 	"recoil": 25,
 	"bullets": 90,
 	"loaded_bullets": 30,
@@ -82,7 +82,7 @@ var gun5 = {
 	"id": 5,
 	"power": 1.5,
 	"rate": 1,
-	"reload_time": 1,
+	"reload_time": 1.07,
 	"recoil": 100,
 	"bullets": 16,
 	"loaded_bullets": 8,
@@ -94,7 +94,7 @@ var gun6 = {
 	"id": 6,
 	"power": 1,
 	"rate": 0.08,
-	"reload_time": 1,
+	"reload_time": 3.43,
 	"recoil": 30,
 	"bullets": 100,
 	"loaded_bullets": 100,
@@ -113,4 +113,7 @@ func get_gun_sprite(var gun_id):
 	
 func get_gun_shot_sound(var gun_id):
 	return load("res://Audios/Guns/" + var2str(gun_id) + " Shot.wav")
+	
+func get_gun_reload_sound(var gun_id):
+	return load("res://Audios/Guns/" + var2str(gun_id) + " Reload.wav")
 	
