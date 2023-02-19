@@ -178,6 +178,16 @@ func get_mouse_position_from_zero():
 func get_resolution_ratio():
 	return get_viewport().size.x / 800
 	
+# Returns the size of the black area from the edge of the screen
+func get_aspect_ratio_difference():
+	if !OS.window_fullscreen:
+		return Vector2(1, 1)
+	
+	if OS.get_screen_size().y == get_viewport().size.y:
+		return Vector2((OS.get_screen_size().x - get_viewport().size.x) / 2, 1)
+	if OS.get_screen_size().x == get_viewport().size.x:
+		return Vector2(1, (OS.get_screen_size().y - get_viewport().size.y) / 2)
+	
 func add_money(var number):
 	money += number
 	$UI.refresh_panel(health, money, guns_collection[active_gun_number])
@@ -255,11 +265,19 @@ func shot():
 	guns_collection[active_gun_number].loaded_bullets -= 1
 	$UI.refresh_panel(health, money, guns_collection[active_gun_number])
 	
+	var min_offset_value = -10 * guns_collection[active_gun_number].power
+	var max_offset_value = 10 * guns_collection[active_gun_number].power
+	
 	randomize()
-	Input.warp_mouse_position(get_viewport().get_mouse_position() * get_resolution_ratio() + Vector2(rand_range(-10 * get_resolution_ratio() * guns_collection[active_gun_number].power, 10 * get_resolution_ratio()  * guns_collection[active_gun_number].power), rand_range(-10 * get_resolution_ratio()  * guns_collection[active_gun_number].power, 10 * get_resolution_ratio()  * guns_collection[active_gun_number].power)))
+	var x_offset = rand_range(min_offset_value, max_offset_value)
+	var y_offset = rand_range(min_offset_value, max_offset_value)
+	var offset = Vector2(x_offset, y_offset) * get_resolution_ratio()
+	
+	var real_mouse_position = get_viewport().get_mouse_position() * get_resolution_ratio()
+	var new_mouse_position = real_mouse_position + offset + get_aspect_ratio_difference()
+	Input.warp_mouse_position(new_mouse_position)
 	
 	if result.has("collider"):
-		# print(result.collider.name + var2str(result.position))   # debug func
 		if result.collider.is_in_group("Enemies"):
 			result.collider.call("hit", guns_collection[active_gun_number].power)
 	
