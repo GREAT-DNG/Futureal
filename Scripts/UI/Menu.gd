@@ -1,8 +1,8 @@
 extends Control
 
 var first_scene
-var game_saver = load("res://Scripts/GameSaver.gd").new()
-var settings_saver = load("res://Scripts/SettingsSaver.gd").new()
+var game_saver = load("res://Scripts/Utilities/GameSaver.gd").new()
+var settings_saver = load("res://Scripts/Utilities/SettingsSaver.gd").new()
 
 func _ready():
 	if settings_saver.is_settings_exsists():
@@ -93,7 +93,9 @@ func _on_Level3Button_button_down():
 func _on_LoadButton_button_down():
 	$AudioStreamPlayer.play()
 	
-	$PlayPanel/FileDialog.popup()
+#	$PlayPanel/FileDialog.popup()
+	$PlayPanel/LoadPanel.show()
+	
 	
 func _on_FileDialog_file_selected(path):
 	$AudioStreamPlayer.play()

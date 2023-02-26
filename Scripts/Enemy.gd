@@ -12,7 +12,7 @@ var max_gravitation = 500
 var up = Vector2 (0, -1)
 
 var gun
-var guns_manager = load("res://Scripts/GunsManager.gd").new()
+var guns_manager = load("res://Scripts/Utilities/GunsManager.gd").new()
 
 var is_dead = false
 

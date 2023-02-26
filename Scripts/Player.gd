@@ -2,9 +2,9 @@ extends KinematicBody2D
 
 export(int) var current_level_number
 
-var guns_manager = load("res://Scripts/GunsManager.gd").new()
-var game_saver = load("res://Scripts/GameSaver.gd").new()
-var settings_saver = load("res://Scripts/SettingsSaver.gd").new()
+var guns_manager = load("res://Scripts/Utilities/GunsManager.gd").new()
+var game_saver = load("res://Scripts/Utilities/GameSaver.gd").new()
+var settings_saver = load("res://Scripts/Utilities/SettingsSaver.gd").new()
 
 var motion = Vector2()
 var up = Vector2(0, -1)

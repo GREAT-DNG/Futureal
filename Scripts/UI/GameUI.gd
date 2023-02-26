@@ -1,29 +1,29 @@
 extends CanvasLayer
 
 func game_complete():
-	$Panel.hide()
+	$Stats.hide()
 	$Final/Sprite.show()
 	$Final/Label.show()
 	
 func player_killed():
-	$Panel.hide()
+	$Stats.hide()
 	$GameOverPanel.show()
 	
 func pause():
-	$Panel.hide()
+	$Stats.hide()
 	$PausePanel.show()
 	get_tree().paused = true
 	
 func refresh_panel(var health, var money, var gun):
-	$Panel/HealthLabel.text = var2str(health)
-	$Panel/MoneyLabel.text = var2str(money)
-	$Panel/GunLabel.text = gun.name + " " + var2str(gun.bullets) + "/" + var2str(gun.loaded_bullets)
+	$Stats/HealthLabel.text = var2str(health)
+	$Stats/MoneyLabel.text = var2str(money)
+	$Stats/GunLabel.text = gun.name + "\n" + var2str(gun.loaded_bullets) + "/" + var2str(gun.bullets)
 	
 func _on_ContinueButton_button_down():
 	$AudioStreamPlayer.play()
 	
 	$PausePanel.hide()
-	$Panel.show()
+	$Stats.show()
 	get_tree().paused = false
 	
 func _on_RestartButton_button_down():

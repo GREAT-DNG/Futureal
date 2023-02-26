@@ -110,4 +110,4 @@ stream = ExtResource( 7 )
 volume_db = -2.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color( 0.117647, 0.117647, 0.117647, 1 )
+color = Color( 0.156863, 0.156863, 0.156863, 1 )

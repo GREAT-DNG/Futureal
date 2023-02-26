@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=44 format=2]
+[gd_resource type="Theme" load_steps=46 format=2]
 
 [ext_resource path="res://Sprites/CheckButton/Off.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/FileDialog/Folder.png" type="Texture" id=2]
@@ -65,6 +65,29 @@ border_width_bottom = 5
 border_color = Color( 1, 1, 1, 1 )
 expand_margin_top = 5.0
 expand_margin_bottom = 5.0
+
+[sub_resource type="DynamicFontData" id=35]
+font_path = "res://Fonts/Main.ttf"
+
+[sub_resource type="DynamicFont" id=36]
+size = 50
+font_data = SubResource( 35 )
+
+[sub_resource type="StyleBoxFlat" id=42]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=41]
+bg_color = Color( 0.498039, 0.498039, 0.498039, 1 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 1, 1, 1, 1 )
 
 [sub_resource type="DynamicFontData" id=37]
 font_path = "res://Fonts/Main.ttf"
@@ -213,13 +236,6 @@ border_width_right = 5
 border_width_bottom = 5
 border_color = Color( 1, 1, 1, 1 )
 
-[sub_resource type="DynamicFontData" id=35]
-font_path = "res://Fonts/Main.ttf"
-
-[sub_resource type="DynamicFont" id=36]
-size = 50
-font_data = SubResource( 35 )
-
 [resource]
 default_font = SubResource( 36 )
 Button/colors/font_color = Color( 1, 1, 1, 1 )
@@ -242,6 +258,11 @@ FileDialog/icons/toggle_hidden = ExtResource( 6 )
 HSlider/styles/grabber_area = SubResource( 31 )
 HSlider/styles/grabber_area_highlight = SubResource( 32 )
 HSlider/styles/slider = SubResource( 33 )
+ItemList/colors/font_color = Color( 1, 1, 1, 1 )
+ItemList/colors/font_color_selected = Color( 1, 1, 1, 1 )
+ItemList/fonts/font = SubResource( 36 )
+ItemList/styles/bg = SubResource( 42 )
+ItemList/styles/selected_focus = SubResource( 41 )
 Label/colors/font_color = Color( 1, 1, 1, 1 )
 LineEdit/colors/cursor_color = Color( 1, 1, 1, 1 )
 LineEdit/colors/font_color = Color( 1, 1, 1, 1 )
