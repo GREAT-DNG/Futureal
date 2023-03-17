@@ -43,6 +43,7 @@ position = Vector2( -1500, -225 )
 next_level = ExtResource( 2 )
 
 [node name="Moneys" type="Node2D" parent="."]
+visible = false
 
 [node name="Money" parent="Moneys" instance=ExtResource( 24 )]
 position = Vector2( 800, 0 )

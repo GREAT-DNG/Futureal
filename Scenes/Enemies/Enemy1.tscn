@@ -29,6 +29,7 @@ frames = SubResource( 1 )
 frame = 3
 
 [node name="CollisionShape2D" parent="." index="1"]
+scale = Vector2( 0.99, 0.99 )
 shape = SubResource( 2 )
 
 [node name="HealthLabel" parent="." index="3"]
