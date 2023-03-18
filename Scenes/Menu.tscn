@@ -258,7 +258,7 @@ icon_align = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
-volume_db = -3.0
+volume_db = -5.0
 
 [connection signal="button_down" from="MainPanel/PlayButton" to="." method="_on_PlayButton_button_down"]
 [connection signal="button_down" from="MainPanel/SettingsButton" to="." method="_on_SettingsButton_button_down"]

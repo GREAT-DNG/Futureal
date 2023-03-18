@@ -225,7 +225,6 @@ position = Vector2( 1975, -425 )
 position = Vector2( 1275, -425 )
 
 [node name="Player" parent="." instance=ExtResource( 9 )]
-position = Vector2( 3230, -10 )
 current_level_number = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
