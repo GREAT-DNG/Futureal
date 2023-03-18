@@ -102,7 +102,6 @@ bus = "Game"
 [node name="DeathStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 pause_mode = 2
 stream = ExtResource( 6 )
-volume_db = 3.0
 bus = "Game"
 
 [node name="PickupAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

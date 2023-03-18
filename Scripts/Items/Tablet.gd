@@ -13,6 +13,7 @@ func _on_Tablet_body_entered(body):
 		remove_child($Sprite)
 		remove_child($CollisionPolygon2D)
 		remove_child($LightOccluder2D)
+		$"../Player/UI/MessageLabel".show_message("Adrenaline pill eaten!")
 		Engine.time_scale = 1.5
 
 func stop():

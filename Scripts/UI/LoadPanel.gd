@@ -16,11 +16,15 @@ func _on_LoadPanel_visibility_changed():
 	directory.list_dir_end()
 	
 func _on_LoadButton_button_down():
-# warning-ignore:return_value_discarded
+	$"../../AudioStreamPlayer".play()
+	# warning-ignore:return_value_discarded
 	var executable_path = OS.get_executable_path()
 	executable_path.erase(executable_path.find_last("/") + 1, executable_path.length() - executable_path.find_last("/") + 1)
-	var file = $ItemList.get_item_text($ItemList.get_selected_items()[0]) + ".tscn"
-	get_tree().change_scene_to(load(executable_path + file))
+	if $ItemList.is_anything_selected():
+		var file = $ItemList.get_item_text($ItemList.get_selected_items()[0]) + ".tscn"
+		get_tree().change_scene_to(load(executable_path + file))
 	
 func _on_BackButton_button_down():
+	$"../../AudioStreamPlayer".play()
+	
 	hide()

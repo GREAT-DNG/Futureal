@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scenes/GunItem.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/MedChest.tscn" type="PackedScene" id=2]
@@ -15,7 +15,6 @@
 [ext_resource path="res://Sprites/Blocks/Block6.png" type="Texture" id=16]
 [ext_resource path="res://Sprites/Blocks/Block1.png" type="Texture" id=17]
 [ext_resource path="res://Scenes/Portal.tscn" type="PackedScene" id=27]
-[ext_resource path="res://Scenes/Tablet.tscn" type="PackedScene" id=30]
 [ext_resource path="res://Scenes/EnemySpawner.tscn" type="PackedScene" id=31]
 
 [sub_resource type="OccluderPolygon2D" id=23]
@@ -173,7 +172,7 @@ position = Vector2( 1375, 625 )
 position = Vector2( 1625, -625 )
 
 [node name="Lamp4" parent="Lamps" instance=ExtResource( 11 )]
-position = Vector2( 540, 180 )
+position = Vector2( 525, 175 )
 
 [node name="Lamp5" parent="Lamps" instance=ExtResource( 11 )]
 position = Vector2( -875, 825 )
@@ -217,6 +216,7 @@ shape = SubResource( 22 )
 
 [node name="BulletsPack" parent="BulletsPacks" instance=ExtResource( 3 )]
 position = Vector2( 1175, 75 )
+clips = 2
 
 [node name="BulletsPack2" parent="BulletsPacks" instance=ExtResource( 3 )]
 position = Vector2( 1975, -425 )
@@ -231,9 +231,6 @@ current_level_number = 1
 stream = ExtResource( 8 )
 volume_db = -2.0
 autoplay = true
-
-[node name="Tablet" parent="." instance=ExtResource( 30 )]
-position = Vector2( 1075, 375 )
 
 [connection signal="body_entered" from="SecretRoom/Area2D" to="SecretRoom" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="SecretRoom/Area2D" to="SecretRoom" method="_on_Area2D_body_exited"]

@@ -1,6 +1,6 @@
 extends Area2D
 
-export(int) var hill_power = 5
+export(int) var heal_power = 5
 
 func _on_Medchest_body_entered(body):
 	if body.name == "Player":
@@ -9,7 +9,8 @@ func _on_Medchest_body_entered(body):
 		remove_child($LightOccluder2D)
 		$"../../Player/PickupAudioStreamPlayer2D".stream = load("res://Audios/Player/ItemPickup.wav")
 		$"../../Player/PickupAudioStreamPlayer2D".play()
-		$"../../Player".hill(hill_power)
+		$"../../Player".heal(heal_power)
+		$"../../Player/UI/MessageLabel".show_message("Healed at " + var2str(heal_power))
 	
 func _on_MedChest_mouse_entered():
 	Input.set_custom_mouse_cursor(load("res://Sprites/Cursors/Cursor_G.png"))

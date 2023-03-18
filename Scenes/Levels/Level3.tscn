@@ -118,17 +118,21 @@ light_scale = 3
 
 [node name="BulletsPack" parent="BulletsPacks" instance=ExtResource( 10 )]
 position = Vector2( 250, 75 )
+clips = 3
 
 [node name="BulletsPack2" parent="BulletsPacks" instance=ExtResource( 10 )]
 position = Vector2( 350, 75 )
+clips = 3
 
 [node name="BulletsPack3" parent="BulletsPacks" instance=ExtResource( 10 )]
 position = Vector2( 250, -75 )
 rotation = 3.14159
+clips = 3
 
 [node name="BulletsPack4" parent="BulletsPacks" instance=ExtResource( 10 )]
 position = Vector2( 350, -75 )
 rotation = 3.14159
+clips = 3
 
 [node name="Player" parent="." instance=ExtResource( 11 )]
 current_level_number = 3

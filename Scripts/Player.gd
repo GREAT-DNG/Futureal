@@ -192,7 +192,7 @@ func add_money(var number):
 	money += number
 	$UI.refresh_panel(health, money, guns_collection[active_gun_number])
 	
-func hill(var power):
+func heal(var power):
 	if !is_dead:
 		if health + power < max_health:
 			health += power
@@ -287,14 +287,18 @@ func shot():
 	motion -= recoil
 	
 func game_complete():
+	get_tree().paused = true
+	
 	is_dead = true
 	$UI.game_complete()
 	
 	add_child(final_timer)
+	final_timer.pause_mode = Node.PAUSE_MODE_PROCESS
 	final_timer.one_shot = true
 	final_timer.connect("timeout", self, "load_main_menu")
 	final_timer.start(5)
 	
 func load_main_menu():
+	get_tree().paused = false
 	# warning-ignore:return_value_discarded
 	get_tree().change_scene_to(load("res://Scenes/Menu.tscn"))

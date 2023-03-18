@@ -5,7 +5,7 @@ var is_used = false
 func _on_Area2D_body_entered(body):
 	if body.name == "Player":
 		if !is_used:
-			$"../Player/UI/MessageLabel".show_message("Secret found!", 3)
+			$"../Player/UI/MessageLabel".show_message("Secret found!")
 		
 		is_used = true
 		$HideSprite.hide()

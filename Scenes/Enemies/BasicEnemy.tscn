@@ -26,3 +26,6 @@ bus = "Game"
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+
+[connection signal="mouse_entered" from="." to="." method="_on_BasicEnemy_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_BasicEnemy_mouse_exited"]

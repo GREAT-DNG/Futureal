@@ -2,8 +2,7 @@ extends CanvasLayer
 
 func game_complete():
 	$Stats.hide()
-	$Final/Sprite.show()
-	$Final/Label.show()
+	$Final.show()
 	
 func player_killed():
 	$Stats.hide()

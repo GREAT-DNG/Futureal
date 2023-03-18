@@ -8,6 +8,7 @@ func _ready():
 	timer.connect("timeout", self, "hide_message")
 	
 func show_message(var message_text, var show_time = 5):
+	$"../MessageAudioStreamPlayer".play()
 	text = message_text
 	show()
 	timer.start(show_time)

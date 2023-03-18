@@ -117,8 +117,8 @@ func shot():
 			if result.collider.is_in_group("Player"):
 				result.collider.call("hit", gun.power)
 	
-func _on_Enemy_mouse_entered():
+func _on_BasicEnemy_mouse_entered():
 	Input.set_custom_mouse_cursor(load("res://Sprites/Cursors/Cursor_R.png"))
 	
-func _on_Enemy_mouse_exited():
+func _on_BasicEnemy_mouse_exited():
 	Input.set_custom_mouse_cursor(load("res://Sprites/Cursors/Cursor.png"))
