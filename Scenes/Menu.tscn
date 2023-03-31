@@ -230,29 +230,38 @@ margin_bottom = 90.0
 text = "Accept"
 
 [node name="FullscreenCheckButton" type="CheckButton" parent="SettingsPanel"]
-margin_left = 210.0
+margin_left = 30.0
 margin_top = 210.0
-margin_right = 590.0
+margin_right = 390.0
 margin_bottom = 290.0
 text = "Fullscreen"
 align = 1
 icon_align = 1
 
 [node name="MuteCheckButton" type="CheckButton" parent="SettingsPanel"]
-margin_left = 210.0
+margin_left = 30.0
 margin_top = 310.0
-margin_right = 590.0
+margin_right = 390.0
 margin_bottom = 390.0
 text = "Mute"
 align = 1
 icon_align = 1
 
 [node name="AutoreloadCheckButton" type="CheckButton" parent="SettingsPanel"]
-margin_left = 210.0
-margin_top = 410.0
-margin_right = 590.0
-margin_bottom = 490.0
+margin_left = 410.0
+margin_top = 210.0
+margin_right = 780.0
+margin_bottom = 290.0
 text = "Autoreload"
+align = 1
+icon_align = 1
+
+[node name="ShowActionsCheckButton" type="CheckButton" parent="SettingsPanel"]
+margin_left = 410.0
+margin_top = 310.0
+margin_right = 780.0
+margin_bottom = 390.0
+text = "Show Actions"
 align = 1
 icon_align = 1
 
@@ -277,3 +286,4 @@ volume_db = -5.0
 [connection signal="button_up" from="SettingsPanel/FullscreenCheckButton" to="." method="_on_FullscreenCheckButton_button_up"]
 [connection signal="button_up" from="SettingsPanel/MuteCheckButton" to="." method="_on_MuteCheckButton_button_up"]
 [connection signal="button_up" from="SettingsPanel/AutoreloadCheckButton" to="." method="_on_AutoreloadCheckButton_button_up"]
+[connection signal="button_up" from="SettingsPanel/ShowActionsCheckButton" to="." method="_on_ShowActionsCheckButton_button_up"]

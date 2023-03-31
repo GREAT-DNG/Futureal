@@ -6,13 +6,16 @@ export(int, 0, 6) var gun_id
 export(bool) var shot_always
 export(bool) var can_complete_game
 
+var settings_saver = load("res://Scripts/Utilities/SettingsSaver.gd").new()
+var guns_manager = load("res://Scripts/Utilities/GunsManager.gd").new()
+
 var motion = Vector2 ()
 var gravitation = 10
 var max_gravitation = 500
 var up = Vector2 (0, -1)
 
 var gun
-var guns_manager = load("res://Scripts/Utilities/GunsManager.gd").new()
+var show_actions = false
 
 var is_dead = false
 
@@ -24,6 +27,9 @@ func _ready():
 	randomize()
 	
 	gun = guns_manager.get_gun(gun_id)
+	
+	if settings_saver.is_settings_exsists():
+		show_actions = settings_saver.get_show_actions_state()
 	
 	add_child(shot_timer)
 	shot_timer.start(gun.rate + rand_range(0.5, lethargy))
@@ -82,6 +88,9 @@ func hit (var power):
 	if !is_dead:
 		health -= power
 	refresh_panel()
+	
+	if show_actions:
+		$ActionSprite.show_hit()
 	
 func reload():
 	gun.loaded_bullets = gun.clip_size

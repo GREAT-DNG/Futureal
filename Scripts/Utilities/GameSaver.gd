@@ -1,11 +1,12 @@
 var save_file = File.new()
 var password = ":)"
 
-func save(var level_num, var health, var money, var guns_collection):
+func save(var level_num, var health, var money, var guns_collection, var active_gun_number):
 	var data = {
 		"health": health,
 		"money": money,
-		"guns_collection": guns_collection}
+		"guns_collection": guns_collection,
+		"active_gun_number": active_gun_number}
 		
 	save_file.open_encrypted_with_pass("user://F" + var2str(level_num), File.WRITE, password)
 	save_file.store_line(to_json(data))
@@ -30,6 +31,10 @@ func get_guns_collection(var level_num):
 		result[i].clip_size = int(result[i].clip_size)
 	
 	return result
+	
+func get_active_gun_number(var level_num):
+	save_file.open_encrypted_with_pass("user://F" + var2str(level_num), File.READ, password)
+	return int(parse_json(save_file.get_line()).active_gun_number)
 	
 func is_level_complete(var level_num):
 	return save_file.file_exists("user://F" + var2str(level_num))

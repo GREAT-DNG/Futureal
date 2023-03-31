@@ -16,15 +16,17 @@ var jump = 500
 var autoreload = false
 var active_gun_number = 0
 var guns_collection = [guns_manager.get_gun(0)]
+var show_actions = false
+
 var shot_timer = Timer.new()
 var reload_timer = Timer.new()
 var final_timer = Timer.new()
 
-var is_dead = false # or complete game
-
 var money = 0
 var health = 10.0
 var max_health = 25.0
+
+var is_dead = false # or complete game
 
 var is_nohit = false
 
@@ -34,11 +36,14 @@ func _ready():
 	
 	if settings_saver.is_settings_exsists():
 		autoreload = settings_saver.get_autoreload_state()
+		show_actions = settings_saver.get_show_actions_state()
 	
 	if game_saver.is_level_complete(current_level_number - 1):
 		health = game_saver.get_health(current_level_number - 1)
 		money = game_saver.get_money(current_level_number - 1)
 		guns_collection = game_saver.get_guns_collection(current_level_number - 1)
+		active_gun_number = game_saver.get_active_gun_number(current_level_number - 1)
+		change_gun(guns_collection[active_gun_number].id)
 	
 	add_child(shot_timer)
 	shot_timer.one_shot = true
@@ -200,10 +205,18 @@ func heal(var power):
 			health = max_health
 	$UI.refresh_panel(health, money, guns_collection[active_gun_number])
 	
+	if show_actions:
+		$ActionSprite.show_heal()
+	
 func hit(var power):
-	if !is_nohit and !is_dead:
-		health -= power
+	if is_nohit or is_dead:
+		return
+		
+	health -= power
 	$UI.refresh_panel(health, money, guns_collection[active_gun_number])
+	
+	if show_actions:
+		$ActionSprite.show_hit()
 	 
 func give_bullets(var clips):
 	for i in range(guns_collection.size()):

@@ -30,17 +30,20 @@ can_complete_game = true
 frames = SubResource( 1 )
 frame = 1
 
-[node name="CollisionShape2D" parent="." index="1"]
+[node name="ActionSprite" parent="." index="1"]
+scale = Vector2( 1.5, 1.5 )
+
+[node name="CollisionShape2D" parent="." index="2"]
 scale = Vector2( 0.99, 0.99 )
 shape = SubResource( 2 )
 
-[node name="HealthLabel" parent="." index="3"]
+[node name="HealthLabel" parent="." index="4"]
 margin_top = -120.0
 margin_bottom = -80.0
 text = "25"
 
-[node name="VisibilityNotifier2D" parent="." index="5"]
+[node name="VisibilityNotifier2D" parent="." index="6"]
 scale = Vector2( 7.5, 7.5 )
 
-[node name="LightOccluder2D" parent="." index="6"]
+[node name="LightOccluder2D" parent="." index="7"]
 occluder = SubResource( 3 )

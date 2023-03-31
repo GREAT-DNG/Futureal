@@ -25,7 +25,7 @@ run/main_scene="res://Scenes/Menu.tscn"
 boot_splash/show_image=false
 boot_splash/fullsize=false
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
-config/icon="res://Icon.png"
+config/icon="res://Icon.svg"
 
 [display]
 

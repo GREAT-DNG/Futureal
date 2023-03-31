@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="50"
+   height="50"
+   viewBox="0 0 13.229166 13.229167"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="Icon.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="px"
+     showgrid="true"
+     inkscape:snap-global="true"
+     inkscape:zoom="20.496745"
+     inkscape:cx="23.955023"
+     inkscape:cy="25.808976"
+     inkscape:window-width="1280"
+     inkscape:window-height="951"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     units="px"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0">
+    <inkscape:grid
+       type="xygrid"
+       id="grid1906"
+       originx="0"
+       originy="0" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Слой 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="stroke:none;stroke-width:1.40001;paint-order:markers stroke fill"
+       id="rect1932"
+       width="13.229167"
+       height="13.229167"
+       x="0"
+       y="0" />
+    <path
+       id="rect2126"
+       style="fill:#ffffff;stroke:none;stroke-width:5.29138;paint-order:markers stroke fill"
+       d="M 0,0 V 50 H 50 V 0 Z M 5,5 H 45 V 45 H 5 Z"
+       transform="scale(0.26458333)" />
+    <path
+       id="rect2587"
+       style="fill:#ffffff;stroke:none;stroke-width:10.5827;paint-order:markers stroke fill"
+       d="M 15 10 L 15 15 L 15 40 L 20 40 L 20 32 L 20 30 L 20 27.5 L 30 27.5 L 30 22.5 L 20 22.5 L 20 20 L 20 15 L 35 15 L 35 10 L 15 10 z "
+       transform="scale(0.26458333)" />
+  </g>
+</svg>

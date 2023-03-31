@@ -15,6 +15,8 @@ func _ready():
 		AudioServer.set_bus_mute(0, $SettingsPanel/MuteCheckButton.pressed)
 		
 		$SettingsPanel/AutoreloadCheckButton.pressed = settings_saver.get_autoreload_state()
+		
+		$SettingsPanel/ShowActionsCheckButton.pressed = settings_saver.get_show_actions_state()
 	
 # warning-ignore:unused_argument
 func _input(event):
@@ -22,7 +24,7 @@ func _input(event):
 			$HelpPanel.show()
 	
 func save_settings():
-	settings_saver.save($SettingsPanel/FullscreenCheckButton.pressed, $SettingsPanel/MuteCheckButton.pressed, $SettingsPanel/AutoreloadCheckButton.pressed)
+	settings_saver.save($SettingsPanel/FullscreenCheckButton.pressed, $SettingsPanel/MuteCheckButton.pressed, $SettingsPanel/AutoreloadCheckButton.pressed, $SettingsPanel/ShowActionsCheckButton.pressed)
 	
 # Main Panel
 func _on_PlayButton_button_down():
@@ -122,6 +124,11 @@ func _on_MuteCheckButton_button_up():
 	save_settings()
 	
 func _on_AutoreloadCheckButton_button_up():
+	$AudioStreamPlayer.play()
+	
+	save_settings()
+	
+func _on_ShowActionsCheckButton_button_up():
 	$AudioStreamPlayer.play()
 	
 	save_settings()
