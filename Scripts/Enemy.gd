@@ -16,6 +16,7 @@ var up = Vector2 (0, -1)
 
 var gun
 var show_actions = false
+var show_trails = false
 
 var is_dead = false
 
@@ -30,6 +31,7 @@ func _ready():
 	
 	if settings_saver.check_settings():
 		show_actions = settings_saver.get_show_actions_state()
+		show_trails = settings_saver.get_show_trails_state()
 	
 	add_child(shot_timer)
 	shot_timer.start(gun.rate + rand_range(0.5, lethargy))
@@ -120,6 +122,11 @@ func shot():
 		result = get_world_2d().direct_space_state.intersect_ray(position, $"../../../Player".position + Vector2(rand_range(15, 50), rand_range(15, 50)), [self])
 	
 	$AudioStreamPlayer2D.play()
+	
+	if show_trails:
+		var trail = load("res://Scenes/Trail.tscn").instance()
+		$"../".add_child(trail)
+		trail.start(position, result.position)
 	
 	if result != null:
 		if result.has("collider"):

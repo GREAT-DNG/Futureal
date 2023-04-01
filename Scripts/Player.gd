@@ -227,7 +227,7 @@ func give_bullets(var clips):
 	$UI.refresh_panel(health, money, guns_collection[active_gun_number])
 	
 func save_game():
-	game_saver.save(current_level_number, health, money, guns_collection)
+	game_saver.save(current_level_number, health, money, guns_collection, active_gun_number)
 	
 func change_gun(var gun_id, var is_new_gun = false):
 	reload_timer.stop()
