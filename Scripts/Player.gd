@@ -17,6 +17,7 @@ var autoreload = false
 var active_gun_number = 0
 var guns_collection = [guns_manager.get_gun(0)]
 var show_actions = false
+var show_trails = false
 
 var shot_timer = Timer.new()
 var reload_timer = Timer.new()
@@ -34,9 +35,10 @@ func _ready():
 	if current_level_number == 0:
 		push_error("\"Player\": Incorrect current_level_number")
 	
-	if settings_saver.is_settings_exsists():
+	if settings_saver.check_settings():
 		autoreload = settings_saver.get_autoreload_state()
 		show_actions = settings_saver.get_show_actions_state()
+		show_trails = settings_saver.get_show_trails_state()
 	
 	if game_saver.is_level_complete(current_level_number - 1):
 		health = game_saver.get_health(current_level_number - 1)
@@ -258,12 +260,14 @@ func reload():
 	$Gun/GunAudioStreamPlayer2D.stream = guns_manager.get_gun_shot_sound(active_gun_number)
 	
 func shot():
-	if (guns_collection[active_gun_number].loaded_bullets == 0) and autoreload:
-		start_reload()
-	
-	if shot_timer.time_left != 0 or guns_collection[active_gun_number].loaded_bullets == 0 or get_tree().paused:
+	if shot_timer.time_left != 0 or reload_timer.time_left != 0 or get_tree().paused:
 		return
 	
+	if guns_collection[active_gun_number].loaded_bullets == 0:
+		if autoreload:
+			start_reload()
+		return
+		
 	shot_timer.start()
 	
 	$Gun/GunAudioStreamPlayer2D.play()
@@ -277,6 +281,15 @@ func shot():
 	
 	guns_collection[active_gun_number].loaded_bullets -= 1
 	$UI.refresh_panel(health, money, guns_collection[active_gun_number])
+	
+	if show_trails:
+		var trail = load("res://Scenes/Trail.tscn").instance()
+		$"../".add_child(trail)
+		
+		if result.has("position"):
+			trail.start(position, result.position)
+		else:
+			trail.start(position, get_mouse_position_from_zero())
 	
 	var min_offset_value = -10 * guns_collection[active_gun_number].power
 	var max_offset_value = 10 * guns_collection[active_gun_number].power
@@ -293,6 +306,7 @@ func shot():
 	if result.has("collider"):
 		if result.collider.is_in_group("Enemies"):
 			result.collider.call("hit", guns_collection[active_gun_number].power)
+	
 	
 	var recoil = (get_mouse_position_from_zero() - position).normalized() * guns_collection[active_gun_number].recoil
 	recoil.x *= 10

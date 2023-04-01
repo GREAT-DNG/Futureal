@@ -28,7 +28,7 @@ func _ready():
 	
 	gun = guns_manager.get_gun(gun_id)
 	
-	if settings_saver.is_settings_exsists():
+	if settings_saver.check_settings():
 		show_actions = settings_saver.get_show_actions_state()
 	
 	add_child(shot_timer)

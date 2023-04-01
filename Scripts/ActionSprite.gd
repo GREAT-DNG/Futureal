@@ -22,4 +22,4 @@ func decrease_modulation():
 		modulate_timer.stop()
 		return
 		
-	modulate = Color(modulate.r, modulate.g, modulate.b, modulate.a - decrease_at_shot)
+	modulate.a = modulate.a - decrease_at_shot
