@@ -26,5 +26,4 @@ func _on_LoadButton_button_down():
 	
 func _on_BackButton_button_down():
 	$"../../AudioStreamPlayer".play()
-	
 	hide()

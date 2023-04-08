@@ -20,23 +20,18 @@ func refresh_panel(var health, var money, var gun):
 	
 func _on_ContinueButton_button_down():
 	$AudioStreamPlayer.play()
-	
 	$PausePanel.hide()
 	$Stats.show()
 	get_tree().paused = false
 	
 func _on_RestartButton_button_down():
 	$AudioStreamPlayer.play()
-	
-	get_tree().paused = false
 	# warning-ignore:return_value_discarded
 	get_tree().reload_current_scene()
 	get_tree().paused = false
 	
 func _on_MenuButton_button_down():
 	$AudioStreamPlayer.play()
-	
-	get_tree().paused = false
 	# warning-ignore:return_value_discarded
 	get_tree().change_scene_to(load("res://Scenes/Menu.tscn"))
 	get_tree().paused = false

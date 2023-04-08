@@ -1,19 +1,5 @@
 extends Node
 
-# Описание оружий: 
-# name - имя
-# id - идентификатор
-# power - сила
-# rate - скорострельность
-# reload_time - время перезарядки
-# recoil - отдача
-# bullets - пули
-# loaded_bullets - заряжанные пули
-# clip_size - емкость магазина
-# is_reloaded - перезаряженность
-# is_automatic - автоматичеСКОСТЬ :/
-
-# Пистолет
 var gun0 = {
 	"name": "Desert Eagle",
 	"id": 0,
@@ -26,7 +12,6 @@ var gun0 = {
 	"clip_size": 7,
 	"is_reloaded": true,
 	"is_automatic": false}
-# Полуавтоматы
 var gun1 = {
 	"name": "Mac-10",
 	"id": 1,
@@ -51,7 +36,6 @@ var gun2 = {
 	"clip_size": 30,
 	"is_reloaded": true,
 	"is_automatic": true}
-# Автоматы
 var gun3 = {
 	"name": "AK47",
 	"id": 3,
@@ -76,7 +60,6 @@ var gun4 = {
 	"clip_size": 30,
 	"is_reloaded": true,
 	"is_automatic": true}
-# Супермегаоружие
 var gun5 = {
 	"name": "Benelli M4 Super 90",
 	"id": 5,
@@ -101,10 +84,10 @@ var gun6 = {
 	"clip_size": 100,
 	"is_reloaded": true,
 	"is_automatic": true}
-
+	
 var guns = [gun0, gun1, gun2, gun3, gun4, gun5, gun6]
-
-# Возвращает данные об оружии
+	
+# Returns waepon data
 func get_gun(var gun_id):
 	return guns[gun_id]
 	

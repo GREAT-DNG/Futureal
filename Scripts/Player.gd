@@ -145,6 +145,7 @@ func _physics_process(delta):
 		if !is_on_floor():
 			$WalkAudioStreamPlayer2D.stop()
 		elif !$WalkAudioStreamPlayer2D.playing:
+			randomize()
 			$WalkAudioStreamPlayer2D.stream = load("res://Audios/Player/Steps" + var2str(int(rand_range(0, 2))) + ".wav")
 			$WalkAudioStreamPlayer2D.play()
 	elif Input.is_action_pressed("right") and !Input.is_action_pressed("left"):
@@ -153,6 +154,7 @@ func _physics_process(delta):
 		if !is_on_floor():
 			$WalkAudioStreamPlayer2D.stop()
 		elif !$WalkAudioStreamPlayer2D.playing:
+			randomize()
 			$WalkAudioStreamPlayer2D.stream = load("res://Audios/Player/Steps" + var2str(int(rand_range(0, 2))) + ".wav")
 			$WalkAudioStreamPlayer2D.play()
 	else:
@@ -290,12 +292,23 @@ func shot():
 			trail.start(position + $Gun.position, result.position)
 		else:
 			trail.start(position + $Gun.position, get_mouse_position_from_zero())
+			
+#		if guns_collection[active_gun_number].id == 5:
+#			for i in range(4):
+#				var additional_trail = load("res://Scenes/Trail.tscn").instance()
+#				$"../".add_child(additional_trail)
+#				if result.has("position"):
+#					randomize()
+#					additional_trail.start(position + $Gun.position, result.position + Vector2(rand_range(5, 10), rand_range(5, 10)))
+#				else:
+#					additional_trail.start(position + $Gun.position, get_mouse_position_from_zero() + Vector2(rand_range(5, 10), rand_range(5, 10)))
 	
 	var min_offset_value = -10 * guns_collection[active_gun_number].power
 	var max_offset_value = 10 * guns_collection[active_gun_number].power
 	
 	randomize()
 	var x_offset = rand_range(min_offset_value, max_offset_value)
+	randomize()
 	var y_offset = rand_range(min_offset_value, max_offset_value)
 	var offset = Vector2(x_offset, y_offset) * get_resolution_ratio()
 	
@@ -306,7 +319,6 @@ func shot():
 	if result.has("collider"):
 		if result.collider.is_in_group("Enemies"):
 			result.collider.call("hit", guns_collection[active_gun_number].power)
-	
 	
 	var recoil = (get_mouse_position_from_zero() - position).normalized() * guns_collection[active_gun_number].recoil
 	recoil.x *= 10

@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Audios/Menu Click.wav" type="AudioStream" id=1]
-[ext_resource path="res://Scripts/UI/LoadPanel.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/UI/Menu.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/UI/Menu/LoadPanel.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/UI/Menu/Menu.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/UI/Menu/HelpPanel.gd" type="Script" id=4]
 [ext_resource path="res://Theme.tres" type="Theme" id=5]
+[ext_resource path="res://Scripts/UI/Menu/PlayPanel.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/UI/Menu/SettingsPanel.gd" type="Script" id=7]
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
@@ -58,6 +61,7 @@ margin_left = 110.0
 margin_top = 30.0
 margin_right = 690.0
 margin_bottom = 570.0
+script = ExtResource( 4 )
 
 [node name="TitleLabel" type="Label" parent="HelpPanel"]
 anchor_left = 0.5
@@ -102,6 +106,7 @@ text = "OK"
 visible = false
 margin_right = 800.0
 margin_bottom = 600.0
+script = ExtResource( 6 )
 
 [node name="BackButton" type="Button" parent="PlayPanel"]
 margin_left = 30.0
@@ -203,6 +208,7 @@ valign = 1
 visible = false
 margin_right = 800.0
 margin_bottom = 600.0
+script = ExtResource( 7 )
 
 [node name="Label" type="Label" parent="SettingsPanel"]
 margin_left = 270.0
@@ -220,14 +226,6 @@ margin_top = 30.0
 margin_right = 190.0
 margin_bottom = 90.0
 text = "Back"
-
-[node name="AcceptButton" type="Button" parent="SettingsPanel"]
-visible = false
-margin_left = 610.0
-margin_top = 30.0
-margin_right = 770.0
-margin_bottom = 90.0
-text = "Accept"
 
 [node name="FullscreenCheckButton" type="CheckButton" parent="SettingsPanel"]
 margin_left = 30.0
@@ -281,19 +279,18 @@ volume_db = -5.0
 [connection signal="button_down" from="MainPanel/PlayButton" to="." method="_on_PlayButton_button_down"]
 [connection signal="button_down" from="MainPanel/SettingsButton" to="." method="_on_SettingsButton_button_down"]
 [connection signal="button_down" from="MainPanel/QuitButton" to="." method="_on_QuitButton_button_down"]
-[connection signal="button_down" from="HelpPanel/OKButton" to="." method="_on_HelpOKButton_button_down"]
+[connection signal="button_down" from="HelpPanel/OKButton" to="HelpPanel" method="_on_HelpOKButton_button_down"]
 [connection signal="button_down" from="PlayPanel/BackButton" to="." method="_on_BackButton_button_down"]
-[connection signal="button_down" from="PlayPanel/LoadButton" to="." method="_on_LoadButton_button_down"]
-[connection signal="button_down" from="PlayPanel/Level0Button" to="." method="_on_Level1Button_button_down"]
-[connection signal="button_down" from="PlayPanel/Level1Button" to="." method="_on_Level2Button_button_down"]
-[connection signal="button_down" from="PlayPanel/Level2Button" to="." method="_on_Level3Button_button_down"]
+[connection signal="button_down" from="PlayPanel/LoadButton" to="PlayPanel" method="_on_LoadButton_button_down"]
+[connection signal="button_down" from="PlayPanel/Level0Button" to="PlayPanel" method="_on_Level1Button_button_down"]
+[connection signal="button_down" from="PlayPanel/Level1Button" to="PlayPanel" method="_on_Level2Button_button_down"]
+[connection signal="button_down" from="PlayPanel/Level2Button" to="PlayPanel" method="_on_Level3Button_button_down"]
 [connection signal="visibility_changed" from="PlayPanel/LoadPanel" to="PlayPanel/LoadPanel" method="_on_LoadPanel_visibility_changed"]
 [connection signal="button_down" from="PlayPanel/LoadPanel/LoadButton" to="PlayPanel/LoadPanel" method="_on_LoadButton_button_down"]
 [connection signal="button_down" from="PlayPanel/LoadPanel/BackButton" to="PlayPanel/LoadPanel" method="_on_BackButton_button_down"]
-[connection signal="button_down" from="SettingsPanel/BackButton" to="." method="_on_BackButton_button_down"]
-[connection signal="button_down" from="SettingsPanel/AcceptButton" to="." method="_on_AcceptButton_button_down"]
-[connection signal="button_up" from="SettingsPanel/FullscreenCheckButton" to="." method="_on_FullscreenCheckButton_button_up"]
-[connection signal="button_up" from="SettingsPanel/MuteCheckButton" to="." method="_on_MuteCheckButton_button_up"]
-[connection signal="button_up" from="SettingsPanel/AutoreloadCheckButton" to="." method="_on_AutoreloadCheckButton_button_up"]
-[connection signal="button_up" from="SettingsPanel/ShowActionsCheckButton" to="." method="_on_ShowActionsCheckButton_button_up"]
-[connection signal="button_up" from="SettingsPanel/ShowTrailsCheckButton" to="." method="_on_ShowTrailsCheckButton_button_up"]
+[connection signal="button_down" from="SettingsPanel/BackButton" to="SettingsPanel" method="_on_BackButton_button_down"]
+[connection signal="button_up" from="SettingsPanel/FullscreenCheckButton" to="SettingsPanel" method="_on_FullscreenCheckButton_button_up"]
+[connection signal="button_up" from="SettingsPanel/MuteCheckButton" to="SettingsPanel" method="_on_MuteCheckButton_button_up"]
+[connection signal="button_up" from="SettingsPanel/AutoreloadCheckButton" to="SettingsPanel" method="_on_AutoreloadCheckButton_button_up"]
+[connection signal="button_up" from="SettingsPanel/ShowActionsCheckButton" to="SettingsPanel" method="_on_ShowActionsCheckButton_button_up"]
+[connection signal="button_up" from="SettingsPanel/ShowTrailsCheckButton" to="SettingsPanel" method="_on_ShowTrailsCheckButton_button_up"]

@@ -5,7 +5,6 @@ var visibility_timer_wait_time = 0.05
 var decrease_at_shot = 0.2
 
 func _ready():
-#	gradient = null
 	add_child(visibility_timer)
 	visibility_timer.connect("timeout", self, "decrease_visibility")
 	

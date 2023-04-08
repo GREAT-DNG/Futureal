@@ -9,7 +9,7 @@ func _ready():
 	
 func _on_Tablet_body_entered(body):
 	if body.name == "Player":
-		timer.start(10)
+		timer.start(15)
 		remove_child($Sprite)
 		remove_child($CollisionPolygon2D)
 		remove_child($LightOccluder2D)
