@@ -10,7 +10,7 @@ var motion = Vector2()
 var up = Vector2(0, -1)
 var speed = 160
 var gravitation = 10
-var max_gravitation = 500
+var max_gravitation = 250
 var jump = 500
 
 var autoreload = false
@@ -287,9 +287,9 @@ func shot():
 		$"../".add_child(trail)
 		
 		if result.has("position"):
-			trail.start(position, result.position)
+			trail.start(position + $Gun.position, result.position)
 		else:
-			trail.start(position, get_mouse_position_from_zero())
+			trail.start(position + $Gun.position, get_mouse_position_from_zero())
 	
 	var min_offset_value = -10 * guns_collection[active_gun_number].power
 	var max_offset_value = 10 * guns_collection[active_gun_number].power

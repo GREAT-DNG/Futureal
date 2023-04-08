@@ -79,6 +79,7 @@ position = Vector2( -300, 400 )
 
 [node name="Enemy0" parent="Enemies/0" instance=ExtResource( 4 )]
 position = Vector2( -1200, 550 )
+path = PoolVector2Array( -1150, 600, -1400, 600 )
 
 [node name="Enemy1" parent="Enemies/0" instance=ExtResource( 4 )]
 position = Vector2( -1200, 300 )
@@ -88,20 +89,25 @@ position = Vector2( -1800, 300 )
 
 [node name="Enemy3" parent="Enemies/0" instance=ExtResource( 4 )]
 position = Vector2( -925, 1150 )
+path = PoolVector2Array( -1000, 1200, -850, 1200 )
 
 [node name="1" type="Node2D" parent="Enemies"]
 
 [node name="Enemy1" parent="Enemies/1" instance=ExtResource( 5 )]
 position = Vector2( 50, -250 )
+path = PoolVector2Array( 50, -200, -150, -200 )
 
 [node name="Enemy2" parent="Enemies/1" instance=ExtResource( 5 )]
 position = Vector2( 750, 550 )
+path = PoolVector2Array( 800, 600, 450, 600 )
 
 [node name="Enemy3" parent="Enemies/1" instance=ExtResource( 5 )]
-position = Vector2( -310, -350 )
+position = Vector2( -300, -350 )
+path = PoolVector2Array( -300, -300, -550, -300 )
 
 [node name="Enemy4" parent="Enemies/1" instance=ExtResource( 5 )]
 position = Vector2( -200, 950 )
+path = PoolVector2Array( 0, 1000, -500, 1000 )
 
 [node name="Enemy5" parent="Enemies/1" instance=ExtResource( 5 )]
 position = Vector2( -500, 300 )

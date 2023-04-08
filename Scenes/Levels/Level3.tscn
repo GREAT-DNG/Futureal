@@ -42,10 +42,12 @@ tile_data = PoolIntArray( -19530126, 7, 0, -19464590, 6, 0, -19399055, 2, 0, -19
 [node name="Enemy0" parent="Enemies/0" instance=ExtResource( 8 )]
 position = Vector2( -300, -450 )
 gun_id = 2
+path = PoolVector2Array( -350, -400, -200, -400 )
 
 [node name="Enemy1" parent="Enemies/0" instance=ExtResource( 8 )]
 position = Vector2( 300, -450 )
 gun_id = 2
+path = PoolVector2Array( 350, -400, 200, -400 )
 
 [node name="1" type="Node2D" parent="Enemies"]
 
@@ -81,12 +83,10 @@ rotation = 3.14159
 [node name="MedChest5" parent="MedChests" instance=ExtResource( 7 )]
 position = Vector2( 475, -850 )
 rotation = 3.14159
-hill_power = 2
 
 [node name="MedChest6" parent="MedChests" instance=ExtResource( 7 )]
 position = Vector2( -475, -850 )
 rotation = 3.14159
-hill_power = 2
 
 [node name="EnemySpawners" type="Node2D" parent="."]
 

@@ -1,16 +1,29 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Sprites/Enemies/Enemy1/Enemy1.png" type="Texture" id=1]
-[ext_resource path="res://Sprites/Enemies/Enemy1/Enemy1_L.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/Enemies/Enemy1/Enemy1_R.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Enemies/Enemy1/Run_R/Enemy1_Run_R1.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Enemies/Enemy1/Wait/Enemy1_Wait0.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Enemies/Enemy1/Run_R/Enemy1_Run_R0.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/Enemies/BasicEnemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Sprites/Enemies/Enemy1/Run_L/Enemy1_Run_L1.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Enemies/Enemy1/Run_L/Enemy1_Run_L0.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Enemies/Enemy1/Wait/Enemy1_Wait1.png" type="Texture" id=7]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 1 ) ],
-"loop": false,
-"name": "default",
+"frames": [ ExtResource( 6 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "Run_L",
 "speed": 2.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "Run_R",
+"speed": 2.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "Wait",
+"speed": 1.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -26,18 +39,18 @@ lethargy = 0.8
 
 [node name="AnimatedSprite" parent="." index="0"]
 frames = SubResource( 1 )
-frame = 3
+animation = "Wait"
 
-[node name="CollisionShape2D" parent="." index="1"]
+[node name="CollisionShape2D" parent="." index="2"]
 scale = Vector2( 0.99, 0.99 )
 shape = SubResource( 2 )
 
-[node name="HealthLabel" parent="." index="3"]
+[node name="HealthLabel" parent="." index="4"]
 text = "12"
 
-[node name="VisibilityNotifier2D" parent="." index="5"]
+[node name="VisibilityNotifier2D" parent="." index="6"]
 position = Vector2( 3.8147e-06, 3.8147e-06 )
 scale = Vector2( 5, 5 )
 
-[node name="LightOccluder2D" parent="." index="6"]
+[node name="LightOccluder2D" parent="." index="7"]
 occluder = SubResource( 3 )
