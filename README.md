@@ -1,7 +1,7 @@
 ![Futureal GitHub Logo](https://user-images.githubusercontent.com/64222535/219353568-d8dd14d2-261f-4622-893e-5e6d597f1f90.png)
 
 # Futureal
-Futureal is a free and open source simple shooting 2D platform game built on the [Godot Engine](https://github.com/godotengine/godot) (current version is 3.5.2 LTS) using the GDScript language and a [git plugin](https://github.com/godotengine/godot-git-plugin). The project is under development, bugs, crashes and other problems are possible. Suggestions, comments and development assistance are welcome. [TODO list](https://github.com/GREATDNG/Futureal/blob/master/TODO.md).
+Futureal is a free and open source simple shooting 2D platform game built on the [Godot Engine](https://github.com/godotengine/godot) (current version is 3.5.2 LTS) using the GDScript language. The project is under development, bugs, crashes and other problems are possible. Suggestions, comments and development assistance are welcome. [TODO list](https://github.com/GREATDNG/Futureal/blob/master/TODO.md).
 
 I'm not very good at Git, if you notice any shortcomings in the maintenance of the repository or the organization of the project, please let me know.
 

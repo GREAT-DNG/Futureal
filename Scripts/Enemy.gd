@@ -95,11 +95,6 @@ func _physics_process(delta):
 				next_position = path[0]
 				next_position_index = 0
 			
-			randomize()
-			speed += rand_range(-10, 10)
-			randomize()
-			wait_time += rand_range(-1.5, 1.5)
-			
 			wait_timer.start(wait_time)
 			motion.x = 0
 			
