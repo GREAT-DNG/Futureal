@@ -236,7 +236,7 @@ func change_gun(var gun_id, var is_new_gun = false):
 	
 	if is_new_gun:
 		guns_collection.append(guns_manager.get_gun(gun_id))
-		active_gun_number += 1
+		active_gun_number = guns_collection.size() - 1
 		
 	$Gun/GunSprite.texture = guns_manager.get_gun_sprite(guns_collection[active_gun_number].id)
 	shot_timer.wait_time = guns_collection[active_gun_number].rate

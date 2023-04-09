@@ -49,10 +49,15 @@ func _ready():
 	wait_timer.one_shot = true
 	
 	$GunSprite.texture = guns_manager.get_gun_sprite(gun_id)
-	$AudioStreamPlayer2D.stream = guns_manager.get_gun_shot_sound(gun_id)
+	$GunAudioStreamPlayer2D.stream = guns_manager.get_gun_shot_sound(gun_id)
 	
 	if path.size() != 0:
 		next_position = path[next_position_index]
+	
+	randomize()
+	speed += rand_range(-10, 10)
+	randomize()
+	wait_time += rand_range(-1.5, 1.5)
 	
 	refresh_panel()
 	
@@ -89,15 +94,33 @@ func _physics_process(delta):
 			elif next_position_index == (path.size() - 1):
 				next_position = path[0]
 				next_position_index = 0
+			
+			randomize()
+			speed += rand_range(-10, 10)
+			randomize()
+			wait_time += rand_range(-1.5, 1.5)
+			
 			wait_timer.start(wait_time)
 			motion.x = 0
+			
 			$AnimatedSprite.play("Wait")
+			$WalkAudioStreamPlayer2D.stop()
 		elif next_position.x > position.x:
 			motion.x = speed
+			
 			$AnimatedSprite.play("Run_R")
+			if !$WalkAudioStreamPlayer2D.playing:
+				randomize()
+				$WalkAudioStreamPlayer2D.stream = load("res://Audios/Player/Steps" + var2str(int(rand_range(0, 2))) + ".wav")
+				$WalkAudioStreamPlayer2D.play()
 		elif next_position.x < position.x:
 			motion.x = -speed
+			
 			$AnimatedSprite.play("Run_L")
+			if !$WalkAudioStreamPlayer2D.playing:
+				randomize()
+				$WalkAudioStreamPlayer2D.stream = load("res://Audios/Player/Steps" + var2str(int(rand_range(0, 2))) + ".wav")
+				$WalkAudioStreamPlayer2D.play()
 		
 	# warning-ignore:return_value_discarded
 	move_and_slide(motion, up)
@@ -115,7 +138,7 @@ func hit (var power):
 	
 func reload():
 	gun.loaded_bullets = gun.clip_size
-	$AudioStreamPlayer2D.stream = guns_manager.get_gun_shot_sound(gun_id)
+	$GunAudioStreamPlayer2D.stream = guns_manager.get_gun_shot_sound(gun_id)
 	randomize()
 	shot_timer.start(gun.rate + rand_range(0.5, lethargy))
 	
@@ -128,8 +151,8 @@ func shot():
 			return
 	
 	if gun.loaded_bullets <= 0:
-		$AudioStreamPlayer2D.stream = guns_manager.get_gun_reload_sound(gun_id)
-		$AudioStreamPlayer2D.play()
+		$GunAudioStreamPlayer2D.stream = guns_manager.get_gun_reload_sound(gun_id)
+		$GunAudioStreamPlayer2D.play()
 		randomize()
 		reload_timer.start(gun.reload_time + rand_range(0.5, lethargy))
 		shot_timer.stop()
@@ -150,7 +173,7 @@ func shot():
 	elif !result.has("position"):
 		return
 		
-	$AudioStreamPlayer2D.play()
+	$GunAudioStreamPlayer2D.play()
 	
 	if result != null:
 		if result.has("collider"):

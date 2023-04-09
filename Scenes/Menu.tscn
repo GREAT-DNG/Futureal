@@ -78,19 +78,18 @@ align = 1
 valign = 1
 
 [node name="Label" type="Label" parent="HelpPanel"]
-margin_left = 30.0
+margin_left = 10.0
 margin_top = 90.0
-margin_right = 550.0
+margin_right = 570.0
 margin_bottom = 450.0
 text = "Futureal
 by GREAT DNG
-github.com/GREATDNG/Futureal
+github.com/GREAT-DNG/Futureal
 
 W/Space - Jump
 A/D - Movement
 Ctrl/Left click - Shot
 R/Right click - Reload
-F - Buying bullets
 Q/E/Mouse wheel - Gun change"
 align = 1
 valign = 1
@@ -280,7 +279,7 @@ volume_db = -5.0
 [connection signal="button_down" from="MainPanel/SettingsButton" to="." method="_on_SettingsButton_button_down"]
 [connection signal="button_down" from="MainPanel/QuitButton" to="." method="_on_QuitButton_button_down"]
 [connection signal="button_down" from="HelpPanel/OKButton" to="HelpPanel" method="_on_HelpOKButton_button_down"]
-[connection signal="button_down" from="PlayPanel/BackButton" to="." method="_on_BackButton_button_down"]
+[connection signal="button_down" from="PlayPanel/BackButton" to="PlayPanel" method="_on_BackButton_button_down"]
 [connection signal="button_down" from="PlayPanel/LoadButton" to="PlayPanel" method="_on_LoadButton_button_down"]
 [connection signal="button_down" from="PlayPanel/Level0Button" to="PlayPanel" method="_on_Level1Button_button_down"]
 [connection signal="button_down" from="PlayPanel/Level1Button" to="PlayPanel" method="_on_Level2Button_button_down"]
