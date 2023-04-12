@@ -1,0 +1,82 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Sprites/Blocks/Block01.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/EnemySpawner.tscn" type="PackedScene" id=2]
+[ext_resource path="res://TileSets/EnvironmentTileSet.tres" type="TileSet" id=3]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Lamp.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Portal.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Audios/Background.wav" type="AudioStream" id=7]
+[ext_resource path="res://Scenes/Enemies/Enemy1.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/MedChest.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/BulletsPack.tscn" type="PackedScene" id=10]
+[ext_resource path="res://TileSets/BlocksTileSet.tres" type="TileSet" id=11]
+[ext_resource path="res://Scenes/Money.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/Enemies/Enemy0.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/GunItem.tscn" type="PackedScene" id=14]
+
+[node name="BasicLevel" type="Node2D"]
+__meta__ = {
+"_editor_description_": "Basis for creating new levels"
+}
+
+[node name="Background" type="Sprite" parent="."]
+scale = Vector2( 800, 600 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="EnvironmentTileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 50, 50 )
+format = 1
+
+[node name="BlocksTileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 11 )
+cell_size = Vector2( 50, 50 )
+format = 1
+
+[node name="Portal" parent="." instance=ExtResource( 6 )]
+
+[node name="Moneys" type="Node2D" parent="."]
+visible = false
+
+[node name="Money" parent="Moneys" instance=ExtResource( 12 )]
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="0" type="Node2D" parent="Enemies"]
+
+[node name="Enemy0" parent="Enemies/0" instance=ExtResource( 13 )]
+
+[node name="1" type="Node2D" parent="Enemies"]
+
+[node name="Enemy1" parent="Enemies/1" instance=ExtResource( 8 )]
+
+[node name="MedChests" type="Node2D" parent="."]
+
+[node name="MedChest" parent="MedChests" instance=ExtResource( 9 )]
+
+[node name="Guns" type="Node2D" parent="."]
+
+[node name="Gun" parent="Guns" instance=ExtResource( 14 )]
+
+[node name="EnemySpawners" type="Node2D" parent="."]
+
+[node name="EnemySpawner" parent="EnemySpawners" instance=ExtResource( 2 )]
+
+[node name="Lamps" type="Node2D" parent="."]
+
+[node name="Lamp" parent="Lamps" instance=ExtResource( 5 )]
+
+[node name="BulletsPacks" type="Node2D" parent="."]
+
+[node name="BulletsPack" parent="BulletsPacks" instance=ExtResource( 10 )]
+
+[node name="Player" parent="." instance=ExtResource( 4 )]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = -2.0
+autoplay = true

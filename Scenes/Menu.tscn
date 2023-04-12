@@ -131,31 +131,186 @@ margin_right = 770.0
 margin_bottom = 90.0
 text = "Load"
 
-[node name="Level0Button" type="Button" parent="PlayPanel"]
-margin_left = 210.0
-margin_top = 210.0
-margin_right = 590.0
-margin_bottom = 290.0
+[node name="TabContainer" type="TabContainer" parent="PlayPanel"]
+margin_left = 30.0
+margin_top = 110.0
+margin_right = 770.0
+margin_bottom = 570.0
+tabs_visible = false
+
+[node name="Part 1" type="Tabs" parent="PlayPanel/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
+
+[node name="Level1Button" type="Button" parent="PlayPanel/TabContainer/Part 1"]
+margin_left = 175.0
+margin_top = 53.0
+margin_right = 555.0
+margin_bottom = 133.0
 theme = ExtResource( 5 )
 text = "Level 1"
 
-[node name="Level1Button" type="Button" parent="PlayPanel"]
-margin_left = 210.0
-margin_top = 310.0
-margin_right = 590.0
-margin_bottom = 390.0
+[node name="Level2Button" type="Button" parent="PlayPanel/TabContainer/Part 1"]
+margin_left = 175.0
+margin_top = 153.0
+margin_right = 555.0
+margin_bottom = 233.0
 theme = ExtResource( 5 )
 disabled = true
 text = "Level 2"
 
-[node name="Level2Button" type="Button" parent="PlayPanel"]
-margin_left = 210.0
-margin_top = 410.0
-margin_right = 590.0
-margin_bottom = 490.0
+[node name="Level3Button" type="Button" parent="PlayPanel/TabContainer/Part 1"]
+margin_left = 175.0
+margin_top = 253.0
+margin_right = 555.0
+margin_bottom = 333.0
 theme = ExtResource( 5 )
 disabled = true
 text = "Level 3"
+
+[node name="Part 2" type="Tabs" parent="PlayPanel/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
+
+[node name="Level4Button" type="Button" parent="PlayPanel/TabContainer/Part 2"]
+margin_left = 175.0
+margin_top = 53.0
+margin_right = 555.0
+margin_bottom = 133.0
+theme = ExtResource( 5 )
+disabled = true
+text = "Level 4"
+
+[node name="Level5Button" type="Button" parent="PlayPanel/TabContainer/Part 2"]
+margin_left = 175.0
+margin_top = 153.0
+margin_right = 555.0
+margin_bottom = 233.0
+theme = ExtResource( 5 )
+disabled = true
+text = "Level 5"
+
+[node name="Level6Button" type="Button" parent="PlayPanel/TabContainer/Part 2"]
+margin_left = 175.0
+margin_top = 253.0
+margin_right = 555.0
+margin_bottom = 333.0
+theme = ExtResource( 5 )
+disabled = true
+text = "Level 6"
+
+[node name="Part 3" type="Tabs" parent="PlayPanel/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
+
+[node name="Level7Button" type="Button" parent="PlayPanel/TabContainer/Part 3"]
+margin_left = 175.0
+margin_top = 53.0
+margin_right = 555.0
+margin_bottom = 133.0
+theme = ExtResource( 5 )
+disabled = true
+text = "Level 7"
+
+[node name="Level8Button" type="Button" parent="PlayPanel/TabContainer/Part 3"]
+margin_left = 175.0
+margin_top = 153.0
+margin_right = 555.0
+margin_bottom = 233.0
+theme = ExtResource( 5 )
+disabled = true
+text = "Level 8"
+
+[node name="Level9Button" type="Button" parent="PlayPanel/TabContainer/Part 3"]
+margin_left = 175.0
+margin_top = 253.0
+margin_right = 555.0
+margin_bottom = 333.0
+theme = ExtResource( 5 )
+disabled = true
+text = "Level 9"
+
+[node name="Part 4" type="Tabs" parent="PlayPanel/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
+
+[node name="Level10Button" type="Button" parent="PlayPanel/TabContainer/Part 4"]
+margin_left = 175.0
+margin_top = 53.0
+margin_right = 555.0
+margin_bottom = 133.0
+theme = ExtResource( 5 )
+disabled = true
+text = "Level 10"
+
+[node name="Level11Button2" type="Button" parent="PlayPanel/TabContainer/Part 4"]
+margin_left = 175.0
+margin_top = 153.0
+margin_right = 555.0
+margin_bottom = 233.0
+theme = ExtResource( 5 )
+disabled = true
+text = "Level 11"
+
+[node name="Level12Button" type="Button" parent="PlayPanel/TabContainer/Part 4"]
+margin_left = 175.0
+margin_top = 253.0
+margin_right = 555.0
+margin_bottom = 333.0
+theme = ExtResource( 5 )
+disabled = true
+text = "Level 12"
+
+[node name="Part 5" type="Tabs" parent="PlayPanel/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
+
+[node name="Level13Button" type="Button" parent="PlayPanel/TabContainer/Part 5"]
+margin_left = 175.0
+margin_top = 53.0
+margin_right = 555.0
+margin_bottom = 133.0
+theme = ExtResource( 5 )
+disabled = true
+text = "Level 13"
+
+[node name="Level14Button" type="Button" parent="PlayPanel/TabContainer/Part 5"]
+margin_left = 175.0
+margin_top = 153.0
+margin_right = 555.0
+margin_bottom = 233.0
+theme = ExtResource( 5 )
+disabled = true
+text = "Level 14"
+
+[node name="Level15Button" type="Button" parent="PlayPanel/TabContainer/Part 5"]
+margin_left = 175.0
+margin_top = 253.0
+margin_right = 555.0
+margin_bottom = 333.0
+theme = ExtResource( 5 )
+disabled = true
+text = "Level 15"
 
 [node name="LoadPanel" type="Panel" parent="PlayPanel"]
 visible = false
@@ -281,9 +436,9 @@ volume_db = -5.0
 [connection signal="button_down" from="HelpPanel/OKButton" to="HelpPanel" method="_on_HelpOKButton_button_down"]
 [connection signal="button_down" from="PlayPanel/BackButton" to="PlayPanel" method="_on_BackButton_button_down"]
 [connection signal="button_down" from="PlayPanel/LoadButton" to="PlayPanel" method="_on_LoadButton_button_down"]
-[connection signal="button_down" from="PlayPanel/Level0Button" to="PlayPanel" method="_on_Level1Button_button_down"]
-[connection signal="button_down" from="PlayPanel/Level1Button" to="PlayPanel" method="_on_Level2Button_button_down"]
-[connection signal="button_down" from="PlayPanel/Level2Button" to="PlayPanel" method="_on_Level3Button_button_down"]
+[connection signal="button_down" from="PlayPanel/TabContainer/Part 1/Level1Button" to="PlayPanel" method="_on_Level1Button_button_down"]
+[connection signal="button_down" from="PlayPanel/TabContainer/Part 1/Level2Button" to="PlayPanel" method="_on_Level2Button_button_down"]
+[connection signal="button_down" from="PlayPanel/TabContainer/Part 1/Level3Button" to="PlayPanel" method="_on_Level3Button_button_down"]
 [connection signal="visibility_changed" from="PlayPanel/LoadPanel" to="PlayPanel/LoadPanel" method="_on_LoadPanel_visibility_changed"]
 [connection signal="button_down" from="PlayPanel/LoadPanel/LoadButton" to="PlayPanel/LoadPanel" method="_on_LoadButton_button_down"]
 [connection signal="button_down" from="PlayPanel/LoadPanel/BackButton" to="PlayPanel/LoadPanel" method="_on_BackButton_button_down"]

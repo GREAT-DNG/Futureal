@@ -1,7 +1,6 @@
 extends Control
 
 var first_scene
-var game_saver = load("res://Scripts/Utilities/GameSaver.gd").new()
 var settings_saver = load("res://Scripts/Utilities/SettingsSaver.gd").new()
 
 func _ready():
@@ -30,17 +29,6 @@ func _on_PlayButton_button_down():
 	
 	$MainPanel.hide()
 	$PlayPanel.show()
-	
-	var last_completed_level = 0
-	
-	for i in range(3):
-		if game_saver.is_level_complete(i):
-			last_completed_level = i
-	
-	last_completed_level += 1
-	
-	for i in range(last_completed_level):
-		get_node(NodePath("PlayPanel/Level" + var2str(i) + "Button")).disabled = false
 	
 func _on_SettingsButton_button_down():
 	$AudioStreamPlayer.play()

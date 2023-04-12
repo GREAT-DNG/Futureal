@@ -63,7 +63,7 @@ var gun4 = {
 var gun5 = {
 	"name": "Benelli M4 Super 90",
 	"id": 5,
-	"power": 1.5,
+	"power": 2,
 	"rate": 1,
 	"reload_time": 1.07,
 	"recoil": 100,

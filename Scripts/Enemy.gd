@@ -18,6 +18,7 @@ var speed = 100
 var next_position = Vector2()
 var next_position_index = 0
 var wait_time = 5 # the time to wait before moving to the next point of path
+var allowable_error = 5
 
 var gun
 var show_actions = false
@@ -58,6 +59,8 @@ func _ready():
 	speed += rand_range(-10, 10)
 	randomize()
 	wait_time += rand_range(-1.5, 1.5)
+	randomize()
+	allowable_error += rand_range(-3, 3)
 	
 	refresh_panel()
 	
@@ -87,7 +90,7 @@ func _physics_process(delta):
 		motion.y = max_gravitation
 		
 	if path.size() != 0 and wait_timer.time_left == 0:
-		if round(next_position.x) == round(position.x):
+		if abs(next_position.x - position.x) < allowable_error:
 			if next_position_index < (path.size() - 1):
 				next_position = path[next_position_index + 1]
 				next_position_index += 1
