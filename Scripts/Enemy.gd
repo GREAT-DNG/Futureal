@@ -54,14 +54,14 @@ func _ready():
 	
 	if path.size() != 0:
 		next_position = path[next_position_index]
-	
-	randomize()
-	speed += rand_range(-10, 10)
-	randomize()
-	wait_time += rand_range(-1.5, 1.5)
-	randomize()
-	allowable_error += rand_range(-3, 3)
-	
+		
+		randomize()
+		speed += rand_range(-10, 10)
+		randomize()
+		wait_time += rand_range(-1.5, 1.5)
+		randomize()
+		allowable_error += rand_range(-3, 3)
+		
 	refresh_panel()
 	
 # warning-ignore:unused_argument
@@ -144,9 +144,8 @@ func shot():
 	if is_dead:
 		return
 	
-	if !$VisibilityNotifier2D.is_on_screen():
-		if !shot_always:
-			return
+	if !$VisibilityNotifier2D.is_on_screen() and !shot_always:
+		return
 	
 	if gun.loaded_bullets <= 0:
 		$GunAudioStreamPlayer2D.stream = guns_manager.get_gun_reload_sound(gun_id)
@@ -168,8 +167,6 @@ func shot():
 		var trail = load("res://Scenes/Trail.tscn").instance()
 		$"../".add_child(trail)
 		trail.start(position, result.position)
-	elif !result.has("position"):
-		return
 		
 	$GunAudioStreamPlayer2D.play()
 	

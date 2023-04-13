@@ -8,7 +8,7 @@ export(bool) var one_shot = true
 var is_used = false
 
 func _on_EnemySpawner_body_entered(body):
-	if body.name == "Player":
+	if body.is_in_group("Player"):
 		if (!one_shot) or (one_shot and !is_used):
 			var enemy = load("res://Scenes/Enemies/Enemy" + var2str(enemy_type) + ".tscn").instance()
 			enemy.position = spawn_position

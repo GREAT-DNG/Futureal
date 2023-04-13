@@ -18,7 +18,7 @@ func _ready():
 		$SettingsPanel/ShowActionsCheckButton.pressed = settings_saver.get_show_actions_state()
 		
 		$SettingsPanel/ShowTrailsCheckButton.pressed = settings_saver.get_show_trails_state()
-
+	
 # warning-ignore:unused_argument
 func _input(event):
 	if Input.is_key_pressed(KEY_F1):
@@ -35,7 +35,7 @@ func _on_SettingsButton_button_down():
 	
 	$MainPanel.hide()
 	$SettingsPanel.show()
-
+	
 func _on_QuitButton_button_down():
 	$AudioStreamPlayer.play()
 	

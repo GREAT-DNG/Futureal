@@ -11,7 +11,7 @@ func _ready():
 	get_node(NodePath("Gun" + var2str(gun_id) + "LightOccluder2D")).show()
 
 func _on_Gun_body_entered(body):
-	if body.name == "Player":
+	if body.is_in_group("Player"):
 		remove_child(get_node(NodePath("Gun" + var2str(gun_id) + "CollisionPolygon2D")))
 		remove_child($Sprite)
 		remove_child(get_node(NodePath("Gun" + var2str(gun_id) + "LightOccluder2D")))

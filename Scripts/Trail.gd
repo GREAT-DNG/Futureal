@@ -20,4 +20,4 @@ func decrease_visibility():
 		remove_and_skip()
 		return
 		
-	modulate.a = modulate.a - decrease_at_shot
+	modulate.a -= decrease_at_shot

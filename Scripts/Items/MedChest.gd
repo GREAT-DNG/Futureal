@@ -3,7 +3,7 @@ extends Area2D
 export(int) var heal_power = 5
 
 func _on_Medchest_body_entered(body):
-	if body.name == "Player":
+	if body.is_in_group("Player"):
 		remove_child($Sprite)
 		remove_child($CollisionPolygon2D)
 		remove_child($LightOccluder2D)
