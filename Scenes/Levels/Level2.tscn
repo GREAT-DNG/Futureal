@@ -189,7 +189,6 @@ clips = 2
 position = Vector2( -575, 1025 )
 
 [node name="Player" parent="." instance=ExtResource( 27 )]
-visible = false
 position = Vector2( 50, 5 )
 current_level_number = 2
 

@@ -135,7 +135,6 @@ rotation = 3.14159
 clips = 3
 
 [node name="Player" parent="." instance=ExtResource( 11 )]
-visible = false
 current_level_number = 3
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
