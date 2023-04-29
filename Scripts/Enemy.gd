@@ -33,9 +33,9 @@ var wait_timer = Timer.new()
 func _ready():
 	gun = guns_manager.get_gun(gun_id)
 	
-	if settings_saver.check_settings():
-		show_actions = settings_saver.get_show_actions_state()
-		show_trails = settings_saver.get_show_trails_state()
+	settings_saver.check_settings()
+	show_actions = settings_saver.get_show_actions_state()
+	show_trails = settings_saver.get_show_trails_state()
 	
 	add_child(shot_timer)
 	randomize()

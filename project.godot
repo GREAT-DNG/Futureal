@@ -32,6 +32,7 @@ config/windows_native_icon="res://Icon.ico"
 
 window/size/width=800
 window/size/resizable=false
+window/size/fullscreen=true
 window/vsync/vsync_via_compositor=true
 mouse_cursor/custom_image="res://Sprites/Cursors/Cursor.png"
 mouse_cursor/custom_image_hotspot=Vector2( 10, 10 )

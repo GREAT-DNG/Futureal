@@ -1,13 +1,14 @@
 var save_file = File.new()
 var path = "user://settings.json"
 
-func save(var fullscreen, var mute, var autoreload, var show_actions, var show_trails):
+func save(var fullscreen, var mute, var autoreload, var show_actions, var show_trails, var crt_effect):
 	var data = {
 		"fullscreen": fullscreen,
 		"mute": mute,
 		"autoreload": autoreload,
 		"show_actions": show_actions,
-		"show_trails": show_trails}
+		"show_trails": show_trails,
+		"crt_effect": crt_effect}
 		
 	save_file.open(path, File.WRITE)
 	save_file.store_line(to_json(data))
@@ -33,15 +34,16 @@ func get_show_actions_state():
 	save_file.open(path, File.READ)
 	return parse_json(save_file.get_line()).show_actions
 	
-func check_settings():
-	if is_settings_exsists():
-		return is_settings_correct()
+func get_crt_effect_state():
+	save_file.open(path, File.READ)
+	return parse_json(save_file.get_line()).crt_effect
 	
-	fix_settings()
-	return false
+func check_settings():
+	if !is_settings_exsists() or !is_settings_correct():
+		fix_settings()
 	
 func fix_settings():
-	save(false, false, false, false, false)
+	save(true, false, false, true, true, true)
 	
 func is_settings_exsists():
 	return save_file.file_exists(path)
@@ -61,6 +63,8 @@ func is_settings_correct():
 	if !data.has("show_actions"):
 		return false
 	if !data.has("show_trails"):
+		return false
+	if !data.has("crt_effect"):
 		return false
 		
 	return true;

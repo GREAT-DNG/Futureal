@@ -35,10 +35,12 @@ func _ready():
 	if current_level_number == 0:
 		push_error("\"Player\": Incorrect current_level_number")
 	
-	if settings_saver.check_settings():
-		autoreload = settings_saver.get_autoreload_state()
-		show_actions = settings_saver.get_show_actions_state()
-		show_trails = settings_saver.get_show_trails_state()
+	settings_saver.check_settings()
+	autoreload = settings_saver.get_autoreload_state()
+	show_actions = settings_saver.get_show_actions_state()
+	show_trails = settings_saver.get_show_trails_state()
+	if !settings_saver.get_crt_effect_state():
+		$UI/CRTColorRect.hide()
 	
 	if game_saver.is_level_complete(current_level_number - 1):
 		health = game_saver.get_health(current_level_number - 1)

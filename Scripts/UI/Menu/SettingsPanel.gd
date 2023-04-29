@@ -7,7 +7,8 @@ func save_settings():
 	$"../SettingsPanel/MuteCheckButton".pressed, \
 	$"../SettingsPanel/AutoreloadCheckButton".pressed, \
 	$"../SettingsPanel/ShowActionsCheckButton".pressed, \
-	$"../SettingsPanel/ShowTrailsCheckButton".pressed)
+	$"../SettingsPanel/ShowTrailsCheckButton".pressed, \
+	$"../SettingsPanel/CRTEffectCheckButton".pressed)
 	
 func _on_BackButton_button_down():
 	$"../AudioStreamPlayer".play()
@@ -35,5 +36,9 @@ func _on_ShowActionsCheckButton_button_up():
 	save_settings()
 	
 func _on_ShowTrailsCheckButton_button_up():
+	$"../AudioStreamPlayer".play()
+	save_settings()
+	
+func _on_CRTEffectCheckButton_button_up():
 	$"../AudioStreamPlayer".play()
 	save_settings()
