@@ -9,7 +9,7 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "",
+"base": "EditorVCSInterface",
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
@@ -26,6 +26,7 @@ boot_splash/show_image=false
 boot_splash/fullsize=false
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://Icon.png"
+config/windows_native_icon="res://Icon.ico"
 
 [display]
 
@@ -104,6 +105,7 @@ reload={
 [locale]
 
 locale_filter=[ 0, [  ] ]
+translations=PoolStringArray(  )
 
 [physics]
 
@@ -112,6 +114,7 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 quality/driver/driver_name="GLES2"
+2d/snapping/use_gpu_pixel_snap=true
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
 environment/default_environment="res://default_env.tres"

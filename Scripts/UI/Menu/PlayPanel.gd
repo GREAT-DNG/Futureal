@@ -59,7 +59,8 @@ func _on_BackButton_button_down():
 	
 func _on_LoadButton_button_down():
 	$"../AudioStreamPlayer".play()
-	$"../PlayPanel/LoadPanel".show()
+	ProjectSettings.set("display/mouse_cursor/custom_image", "")
+	$LoadLevelFileDialog.popup()
 	
 func _on_Level1Button_button_down():
 	$"../AudioStreamPlayer".play()

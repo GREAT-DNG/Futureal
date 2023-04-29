@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/RadioChecked.png-0a604fd7777ba4f2b3b571d18d63c0c1.stex"
+path="res://.import/Environment08.png-6af71fb3ac63c90d49402f3c58d9d0aa.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/FileDialog/RadioChecked.png"
-dest_files=[ "res://.import/RadioChecked.png-0a604fd7777ba4f2b3b571d18d63c0c1.stex" ]
+source_file="res://Sprites/Environment/Environment08.png"
+dest_files=[ "res://.import/Environment08.png-6af71fb3ac63c90d49402f3c58d9d0aa.stex" ]
 
 [params]
 

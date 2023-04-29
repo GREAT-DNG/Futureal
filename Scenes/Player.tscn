@@ -83,6 +83,7 @@ bus = "Game"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+limit_smoothed = true
 smoothing_enabled = true
 smoothing_speed = 8.0
 
@@ -93,7 +94,6 @@ transform = Transform2D( 1, 0, 0, 1, 400, 300 )
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 3 )
 texture_scale = 1.6
-energy = 1.2
 shadow_enabled = true
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]

@@ -76,7 +76,7 @@ func _process(delta):
 	if health <= 0 and !is_dead:
 		$HealthLabel.hide()
 		remove_child($CollisionShape2D)
-		$"../../../Player".add_money(5)
+		$"../../../Player".add_coins(5)
 		is_dead = true
 		
 		if can_complete_game:

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ToggleHidden.png-8346065c1131903f3a25357ef9b8e86c.stex"
+path="res://.import/Environment11.png-e1162d724d63f1b8a4226cd2d1662a07.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/FileDialog/ToggleHidden.png"
-dest_files=[ "res://.import/ToggleHidden.png-8346065c1131903f3a25357ef9b8e86c.stex" ]
+source_file="res://Sprites/Environment/Environment11.png"
+dest_files=[ "res://.import/Environment11.png-e1162d724d63f1b8a4226cd2d1662a07.stex" ]
 
 [params]
 

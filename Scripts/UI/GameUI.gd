@@ -13,9 +13,9 @@ func pause():
 	$PausePanel.show()
 	get_tree().paused = true
 	
-func refresh_panel(var health, var money, var gun):
+func refresh_panel(var health, var coins, var gun):
 	$Stats/HealthLabel.text = var2str(health)
-	$Stats/MoneyLabel.text = var2str(money)
+	$Stats/CoinsLabel.text = var2str(coins)
 	$Stats/GunLabel.text = gun.name + "\n" + var2str(gun.loaded_bullets) + "/" + var2str(gun.bullets)
 	
 func _on_ContinueButton_button_down():

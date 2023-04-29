@@ -1,10 +1,10 @@
 var save_file = File.new()
 var password = ":)"
 
-func save(var level_num, var health, var money, var guns_collection, var active_gun_number):
+func save(var level_num, var health, var coins, var guns_collection, var active_gun_number):
 	var data = {
 		"health": health,
-		"money": money,
+		"coins": coins,
 		"guns_collection": guns_collection,
 		"active_gun_number": active_gun_number}
 		
@@ -16,9 +16,9 @@ func get_health(var level_num):
 	save_file.open_encrypted_with_pass("user://F" + var2str(level_num), File.READ, password)
 	return parse_json(save_file.get_line()).health
 	
-func get_money(var level_num):
+func get_coins(var level_num):
 	save_file.open_encrypted_with_pass("user://F" + var2str(level_num), File.READ, password)
-	return int(parse_json(save_file.get_line()).money)
+	return int(parse_json(save_file.get_line()).coins)
 	
 func get_guns_collection(var level_num):
 	save_file.open_encrypted_with_pass("user://F" + var2str(level_num), File.READ, password)

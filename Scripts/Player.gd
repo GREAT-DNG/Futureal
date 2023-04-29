@@ -23,7 +23,7 @@ var shot_timer = Timer.new()
 var reload_timer = Timer.new()
 var final_timer = Timer.new()
 
-var money = 0
+var coins = 0
 var health = 10.0
 var max_health = 25.0
 
@@ -42,7 +42,7 @@ func _ready():
 	
 	if game_saver.is_level_complete(current_level_number - 1):
 		health = game_saver.get_health(current_level_number - 1)
-		money = game_saver.get_money(current_level_number - 1)
+		coins = game_saver.get_coins(current_level_number - 1)
 		guns_collection = game_saver.get_guns_collection(current_level_number - 1)
 		active_gun_number = game_saver.get_active_gun_number(current_level_number - 1)
 		change_gun(guns_collection[active_gun_number].id)
@@ -55,7 +55,7 @@ func _ready():
 	reload_timer.one_shot = true
 	reload_timer.connect("timeout", self, "reload")
 	
-	$UI.refresh_panel(health, money, guns_collection[active_gun_number])
+	$UI.refresh_panel(health, coins, guns_collection[active_gun_number])
 	
 # warning-ignore:unused_argument
 func _process(delta):
@@ -94,13 +94,13 @@ func _input(event):
 		
 	if Input.is_key_pressed(KEY_F11):
 		guns_collection[active_gun_number].bullets += 100
-		$UI.refresh_panel(health, money, guns_collection[active_gun_number])
+		$UI.refresh_panel(health, coins, guns_collection[active_gun_number])
 		$UI/MessageLabel.show_message("[Cheat] 100 bullets added", 3)
 		
 	if Input.is_key_pressed(KEY_F12):
-		money += 100
-		$UI.refresh_panel(health, money, guns_collection[active_gun_number])
-		$UI/MessageLabel.show_message("[Cheat] 100 moneys added", 3)
+		coins += 100
+		$UI.refresh_panel(health, coins, guns_collection[active_gun_number])
+		$UI/MessageLabel.show_message("[Cheat] 100 coins added", 3)
 		
 	if Input.is_key_pressed(KEY_ESCAPE):
 		$UI.pause()
@@ -197,9 +197,9 @@ func get_aspect_ratio_difference():
 	if OS.get_screen_size().x == get_viewport().size.x:
 		return Vector2(1, (OS.get_screen_size().y - get_viewport().size.y) / 2)
 	
-func add_money(var number):
-	money += number
-	$UI.refresh_panel(health, money, guns_collection[active_gun_number])
+func add_coins(var number):
+	coins += number
+	$UI.refresh_panel(health, coins, guns_collection[active_gun_number])
 	
 func heal(var power):
 	if !is_dead:
@@ -207,7 +207,7 @@ func heal(var power):
 			health += power
 		else:
 			health = max_health
-	$UI.refresh_panel(health, money, guns_collection[active_gun_number])
+	$UI.refresh_panel(health, coins, guns_collection[active_gun_number])
 	
 	if show_actions:
 		$ActionSprite.show_heal()
@@ -217,7 +217,7 @@ func hit(var power):
 		return
 		
 	health -= power
-	$UI.refresh_panel(health, money, guns_collection[active_gun_number])
+	$UI.refresh_panel(health, coins, guns_collection[active_gun_number])
 	
 	if show_actions:
 		$ActionSprite.show_hit()
@@ -226,10 +226,10 @@ func give_bullets(var clips):
 	for i in range(guns_collection.size()):
 		guns_collection[i - 1].bullets += clips * guns_collection[i - 1].clip_size
 	
-	$UI.refresh_panel(health, money, guns_collection[active_gun_number])
+	$UI.refresh_panel(health, coins, guns_collection[active_gun_number])
 	
 func save_game():
-	game_saver.save(current_level_number, health, money, guns_collection, active_gun_number)
+	game_saver.save(current_level_number, health, coins, guns_collection, active_gun_number)
 	
 func change_gun(var gun_id, var is_new_gun = false):
 	reload_timer.stop()
@@ -241,7 +241,7 @@ func change_gun(var gun_id, var is_new_gun = false):
 	$Gun/GunSprite.texture = guns_manager.get_gun_sprite(guns_collection[active_gun_number].id)
 	shot_timer.wait_time = guns_collection[active_gun_number].rate
 	$Gun/GunAudioStreamPlayer2D.stream = guns_manager.get_gun_shot_sound(guns_collection[active_gun_number].id)
-	$UI.refresh_panel(health, money, guns_collection[active_gun_number])
+	$UI.refresh_panel(health, coins, guns_collection[active_gun_number])
 	
 func start_reload():
 	$Gun/GunAudioStreamPlayer2D.stream = guns_manager.get_gun_reload_sound(active_gun_number)
@@ -257,7 +257,7 @@ func reload():
 	guns_collection[active_gun_number].loaded_bullets = guns_collection[active_gun_number].clip_size
 	
 	$UI/MessageLabel.show_message("Reloaded")
-	$UI.refresh_panel(health, money, guns_collection[active_gun_number])
+	$UI.refresh_panel(health, coins, guns_collection[active_gun_number])
 	
 	$Gun/GunAudioStreamPlayer2D.stream = guns_manager.get_gun_shot_sound(active_gun_number)
 	
@@ -282,7 +282,7 @@ func shot():
 	var result = get_world_2d().direct_space_state.intersect_ray(position, get_mouse_position_from_zero(), [self])
 	
 	guns_collection[active_gun_number].loaded_bullets -= 1
-	$UI.refresh_panel(health, money, guns_collection[active_gun_number])
+	$UI.refresh_panel(health, coins, guns_collection[active_gun_number])
 	
 	if show_trails:
 		var trail = load("res://Scenes/Trail.tscn").instance()
