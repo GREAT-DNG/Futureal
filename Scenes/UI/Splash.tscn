@@ -1,0 +1,118 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/UI/Splash.gd" type="Script" id=1]
+[ext_resource path="res://Shaders/CRT.tres" type="Shader" id=2]
+[ext_resource path="res://Audios/Key.wav" type="AudioStream" id=3]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 2 )
+shader_param/overlay = true
+shader_param/scanlines_opacity = 0.0
+shader_param/scanlines_width = 0.25
+shader_param/grille_opacity = 0.2
+shader_param/resolution = Vector2( 700, 500 )
+shader_param/pixelate = true
+shader_param/roll = true
+shader_param/roll_speed = 3.0
+shader_param/roll_size = 12.0
+shader_param/roll_variation = 2.0
+shader_param/distort_intensity = 0.001
+shader_param/noise_opacity = 0.1
+shader_param/noise_speed = 3.0
+shader_param/static_noise_intensity = 0.03
+shader_param/aberration = 0.01
+shader_param/brightness = 1.3
+shader_param/discolor = true
+shader_param/warp_amount = 0.3
+shader_param/clip_warp = false
+shader_param/vignette_intensity = 0.4
+shader_param/vignette_opacity = 0.5
+
+[sub_resource type="Animation" id=2]
+resource_name = "Flashing"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("StartLabel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Transition"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("TransitionColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("TransitionColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[node name="Splash" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="FuturealLabel" type="Label" parent="."]
+margin_right = 266.0
+margin_bottom = 200.0
+rect_scale = Vector2( 3, 3 )
+text = " "
+align = 1
+valign = 1
+uppercase = true
+
+[node name="StartLabel" type="Label" parent="."]
+visible = false
+margin_top = 500.0
+margin_right = 800.0
+margin_bottom = 550.0
+text = "Press any key to start"
+align = 1
+valign = 1
+
+[node name="TransitionColorRect" type="ColorRect" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 800.0
+margin_bottom = 600.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="CRTColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource( 1 )
+margin_right = 800.0
+margin_bottom = 600.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Flashing = SubResource( 2 )
+anims/Transition = SubResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )

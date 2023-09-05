@@ -1,21 +1,17 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Sprites/Portal/Portal_0.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Portal.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/Light/Light0.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/Portal/Portal_1.png" type="Texture" id=4]
+[ext_resource path="res://Audios/Portal.wav" type="AudioStream" id=5]
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 1 ), ExtResource( 4 ) ],
 "loop": true,
-"name": "Active",
-"speed": 4.0
-}, {
-"frames": [ ExtResource( 1 ) ],
-"loop": true,
-"name": "Inactive",
-"speed": 4.0
+"name": "Main",
+"speed": 2.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -29,7 +25,8 @@ script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 3 )
-animation = "Active"
+animation = "Main"
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -45,6 +42,11 @@ texture_scale = 2.0
 energy = 1.5
 shadow_enabled = true
 shadow_item_cull_mask = 3
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -5.0
+bus = "Game"
 
 [connection signal="body_entered" from="." to="." method="_on_Portal_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Portal_body_exited"]

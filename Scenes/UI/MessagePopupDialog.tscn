@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/UI/MessagePopupDialog.gd" type="Script" id=1]
+
+[node name="MessagePopupDialog" type="PopupDialog"]
+margin_left = -200.0
+margin_top = -100.0
+margin_right = 200.0
+margin_bottom = 100.0
+popup_exclusive = true
+script = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 380.0
+margin_bottom = 100.0
+align = 1
+valign = 1
+autowrap = true
+
+[node name="OKButton" type="Button" parent="."]
+margin_left = 120.0
+margin_top = 120.0
+margin_right = 280.0
+margin_bottom = 180.0
+text = "OK"
+
+[connection signal="pressed" from="OKButton" to="." method="_on_OKButton_pressed"]

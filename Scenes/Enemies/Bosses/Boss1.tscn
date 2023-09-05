@@ -1,0 +1,197 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Sprites/Enemies/Bosses/Boss1/Boss1_0.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/ActionColorRect.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/Enemies/Bosses/Boss1/Boss1_1.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/Bosses/Boss1/Boss1.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Bosses/Boss1/Boss1Gun.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/Bosses/Boss1/Boss1Body.gd" type="Script" id=8]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "Wait",
+"speed": 1.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 50, 25 )
+
+[sub_resource type="OccluderPolygon2D" id=3]
+cull_mode = 1
+polygon = PoolVector2Array( -50, -25, 50, -25, 50, 25, -50, 25 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "Death"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Teleportation"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.7, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Guns:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 0.7, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "teleportation"
+} ]
+}
+
+[node name="Boss1" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Fog" type="CPUParticles2D" parent="."]
+amount = 100
+lifetime = 1.5
+preprocess = 10.0
+lifetime_randomness = 0.1
+emission_shape = 2
+emission_rect_extents = Vector2( 350, 300 )
+direction = Vector2( 0, 0 )
+gravity = Vector2( 0, 0 )
+radial_accel = 5.0
+radial_accel_random = 1.0
+scale_amount = 2.0
+scale_amount_random = 0.5
+
+[node name="Body" type="KinematicBody2D" parent="." groups=["Enemies"]]
+script = ExtResource( 8 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Body"]
+frames = SubResource( 1 )
+animation = "Wait"
+playing = true
+
+[node name="ActionColorRect" type="ColorRect" parent="Body"]
+margin_left = -50.0
+margin_top = -25.0
+margin_right = 50.0
+margin_bottom = 25.0
+color = Color( 1, 1, 1, 0 )
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+shape = SubResource( 2 )
+
+[node name="HealthLabel" type="Label" parent="Body"]
+margin_left = -30.0
+margin_top = -60.0
+margin_right = 30.0
+margin_bottom = -30.0
+text = "0"
+align = 1
+valign = 1
+
+[node name="HealthProgressBar" type="ProgressBar" parent="Body"]
+visible = false
+margin_left = -65.0
+margin_top = -55.0
+margin_right = 65.0
+margin_bottom = -35.0
+max_value = 10.0
+value = 3.5
+percent_visible = false
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Body"]
+occluder = SubResource( 3 )
+
+[node name="Guns" type="Node2D" parent="."]
+
+[node name="Gun0" type="Node2D" parent="Guns"]
+script = ExtResource( 7 )
+gun_id = 1
+
+[node name="GunSprite" type="Sprite" parent="Guns/Gun0"]
+
+[node name="GunAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Guns/Gun0"]
+volume_db = -8.0
+max_distance = 1000.0
+bus = "Game"
+
+[node name="Gun1" type="Node2D" parent="Guns"]
+script = ExtResource( 7 )
+gun_id = 1
+
+[node name="GunSprite" type="Sprite" parent="Guns/Gun1"]
+
+[node name="GunAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Guns/Gun1"]
+volume_db = -8.0
+max_distance = 1000.0
+bus = "Game"
+
+[node name="Gun2" type="Node2D" parent="Guns"]
+script = ExtResource( 7 )
+gun_id = 1
+
+[node name="GunSprite" type="Sprite" parent="Guns/Gun2"]
+
+[node name="GunAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Guns/Gun2"]
+volume_db = -8.0
+max_distance = 1000.0
+bus = "Game"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Body")
+anims/Death = SubResource( 4 )
+anims/Teleportation = SubResource( 5 )
+
+[connection signal="mouse_entered" from="Body" to="Body" method="_on_BasicEnemy_mouse_entered"]
+[connection signal="mouse_exited" from="Body" to="Body" method="_on_BasicEnemy_mouse_exited"]

@@ -1,17 +1,15 @@
 extends Label
 
-var timer = Timer.new()
+var timer: Timer = Timer.new()
 
-func _ready():
+func _ready() -> void:
 	add_child(timer)
 	timer.one_shot = true
-	timer.connect("timeout", self, "hide_message")
-	
-func show_message(var message_text, var show_time = 5):
-	$"../MessageAudioStreamPlayer".play()
+	# warning-ignore:return_value_discarded
+	timer.connect("timeout", self, "hide")
+
+func show_message(message_text: String, show_time: float = 5.0) -> void:
+	get_parent().get_node("MessageAudioStreamPlayer").play()
 	text = message_text
 	show()
 	timer.start(show_time)
-
-func hide_message():
-	hide()

@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://TileSets/BlocksTileSet.tres" type="TileSet" id=2]
+[ext_resource path="res://Scenes/Items/BulletsPack.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Lamps/Lamp0.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Audios/Level Background.wav" type="AudioStream" id=5]
+[ext_resource path="res://Scenes/Items/MedChest.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Items/GunItem.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Lamps/Lamp1.tscn" type="PackedScene" id=8]
+[ext_resource path="res://TileSets/EnvironmentTileSet.tres" type="TileSet" id=9]
+
+[node name="BasicMultiplayerLevel" type="Node2D"]
+__meta__ = {
+"_editor_description_": "Basis for creating new multiplayer levels"
+}
+
+[node name="EnvironmentTileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 9 )
+cell_size = Vector2( 50, 50 )
+format = 1
+
+[node name="BlocksTileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 50, 50 )
+format = 1
+
+[node name="MedChests" type="Node2D" parent="."]
+
+[node name="MedChest" parent="MedChests" instance=ExtResource( 6 )]
+respawning = true
+
+[node name="BulletsPacks" type="Node2D" parent="."]
+
+[node name="BulletsPack" parent="BulletsPacks" instance=ExtResource( 3 )]
+respawning = true
+
+[node name="Guns" type="Node2D" parent="."]
+
+[node name="Gun" parent="Guns" instance=ExtResource( 7 )]
+respawning = true
+
+[node name="Lamps" type="Node2D" parent="."]
+
+[node name="0" type="Node2D" parent="Lamps"]
+
+[node name="Lamp0" parent="Lamps/0" instance=ExtResource( 4 )]
+
+[node name="1" type="Node2D" parent="Lamps"]
+
+[node name="Lamp1" parent="Lamps/1" instance=ExtResource( 8 )]
+
+[node name="Players" type="Node2D" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -5.0
+autoplay = true
+bus = "Game"
