@@ -11,15 +11,9 @@ const LEVEL1: Dictionary = {
 	"spawn_positions": [Vector2(500, 0), Vector2(-500, 0)],
 	"used_spawn_positions": [],
 	}
-const BIGLEVEL: Dictionary = {
-	"max_players": 2,
-	"spawn_positions": [Vector2(300, -50), Vector2(-300, -50)],
-	"used_spawn_positions": [],
-	}
 
 const LEVELS: Dictionary = {
 	"Level1": LEVEL1,
-	"BigLevel": BIGLEVEL
 	}
 
 const PORT: int = 49094

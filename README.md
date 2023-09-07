@@ -1,9 +1,14 @@
 ![Futureal GitHub Logo](https://user-images.githubusercontent.com/64222535/219353568-d8dd14d2-261f-4622-893e-5e6d597f1f90.png)
 
+[![License](https://img.shields.io/github/license/GREAT-DNG/Futureal?label=License&color=white)](https://github.com/GREAT-DNG/Futureal/blob/master/LICENSE)
+[![Release](https://img.shields.io/github/v/tag/GREAT-DNG/Futureal?label=Release&color=white)](https://github.com/GREAT-DNG/Futureal/releases)
+[![Downloads](https://img.shields.io/github/downloads/GREAT-DNG/Futureal/total?label=Downloads&color=white)](https://github.com/GREAT-DNG/Futureal/releases)
+
+[![Last master commit](https://img.shields.io/github/last-commit/GREAT-DNG/Futureal/master?label=Last%20master%20commit&color=white)](https://github.com/GREAT-DNG/Futureal/commits/master)
+[![Last develop commit](https://img.shields.io/github/last-commit/GREAT-DNG/Futureal/develop?label=Last%20develop%20commit&color=white)](https://github.com/GREAT-DNG/Futureal/commits/develop)
+
 # Futureal
 Futureal is a free and open source simple shooting 2D platform game built on the [Godot Engine](https://github.com/godotengine/godot) (current version is 3.5.2 LTS) using the GDScript language. The project is under development, bugs, crashes and other problems are possible. Suggestions, comments and development assistance are welcome. [TODO list](https://github.com/GREAT-DNG/Futureal/blob/master/TODO.md).
-
-I'm not very good at Git, if you notice any shortcomings in the maintenance of the repository or the organization of the project, please let me know.
 
 The sources of a small part of the content of the game remained unknown, if something violates your copyright, please report it to [my mail](mailto:greatdng@gmail.com).
 
@@ -13,7 +18,7 @@ You can get the game in two ways: by compiling the game from source (recommended
 ### Compiling from source (recommended)
 The easiest way to build the game:
 1. Download [sources](https://github.com/GREAT-DNG/Futureal/archive/refs/heads/master.zip).
-2. Download [Godot Engine](https://godotengine.org/download) (without .NET support).
+2. Download [Godot Engine](https://github.com/godotengine/godot/releases/download/3.5.2-stable/) (without .NET support).
 3. Unpack both archives to a location of your choice.
 4. Run Godot binary from second archive.
 5. In the window that opens, click the `Import` button and select the file `project.godot` from the archive with the game.
@@ -32,6 +37,3 @@ Enjoy the game!
 
 ## Getting help
 You can ask your question in [issues](https://github.com/GREAT-DNG/Futureal/issues).
-
-## Licensing
-The project uses the [MIT license](https://github.com/GREAT-DNG/Futureal/blob/master/LICENSE).
