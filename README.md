@@ -8,7 +8,7 @@
 [![Last develop commit](https://img.shields.io/github/last-commit/GREAT-DNG/Futureal/develop?label=Last%20develop%20commit&color=white)](https://github.com/GREAT-DNG/Futureal/commits/develop)
 
 # Futureal
-Futureal is a free and open source simple shooting 2D platform game built on the [Godot Engine](https://github.com/godotengine/godot) (current version is 3.5.2 LTS) using the GDScript language. The project is under development, bugs, crashes and other problems are possible. Suggestions, comments and development assistance are welcome. [TODO list](https://github.com/GREAT-DNG/Futureal/blob/master/TODO.md).
+Futureal is a free and open source simple shooting 2D platformer built on the [Godot Engine](https://github.com/godotengine/godot) (current version is 3.5.2 LTS) using the GDScript language. The project is under development, bugs, crashes and other problems are possible. Suggestions, comments and development assistance are welcome. [TODO list](https://github.com/GREAT-DNG/Futureal/blob/master/TODO.md).
 
 The sources of a small part of the content of the game remained unknown, if something violates your copyright, please report it to [my mail](mailto:greatdng@gmail.com).
 

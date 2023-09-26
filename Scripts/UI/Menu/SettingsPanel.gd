@@ -89,8 +89,8 @@ func _on_CustomCursorCheckButton_pressed() -> void:
 
 func _on_LinkButton_pressed() -> void:
 	# warning-ignore:return_value_discarded
-	OS.shell_open("https://github.com/GREAT-DNG/Futureal")
-	print("[" + Time.get_time_string_from_system() + "] Webpage opened")
+	OS.shell_open("https://great-dng.github.io/futureal-website/")
+	print("[" + Time.get_time_string_from_system() + "] Website opened")
 
 func update_controls() -> void:
 	for i in CONTROLS:
