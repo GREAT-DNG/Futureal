@@ -112,7 +112,7 @@ func _physics_process(_delta: float) -> void:
 			motion.x = 0
 		
 		if motion.x != 0 and is_on_floor() and !$WalkAudioStreamPlayer2D.playing:
-			$WalkAudioStreamPlayer2D.stream = load("res://Audios/Player/Steps" + var2str(int(rand_range(0, 2))) + ".wav")
+			$WalkAudioStreamPlayer2D.stream = load("res://Audios/Player/Steps " + var2str(int(rand_range(0, 2))) + ".wav")
 			$WalkAudioStreamPlayer2D.play()
 		elif motion.x == 0 or !is_on_floor():
 			$WalkAudioStreamPlayer2D.stop()

@@ -37,7 +37,7 @@ func refresh_panel() -> void:
 	$Body/HealthLabel.text = var2str(stepify(health, 0.1))
 
 func hit (power: float) -> void:
-	if stepify(health, 0.1) >= 0.0:
+	if !dead:
 		health -= power
 		if stepify(health, 0.1) <= 0.0:
 			health = 0.0

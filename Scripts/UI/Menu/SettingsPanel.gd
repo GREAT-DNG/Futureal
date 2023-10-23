@@ -22,6 +22,8 @@ onready var audiostreamplayer: Node = get_parent().get_node("AudioStreamPlayer")
 func _ready() -> void:
 	$TabContainer/Gameplay/AutoreloadCheckButton.pressed = SettingsManager.get_setting("autoreload")
 	$TabContainer/Gameplay/AutochangeCheckButton.pressed = SettingsManager.get_setting("autochange")
+	$TabContainer/Gameplay/Difficulty/OptionButton.selected = SettingsManager.get_setting("difficulty")
+	
 	$TabContainer/System/ScrollContainer/Control/FullscreenCheckButton.pressed = SettingsManager.get_setting("fullscreen")
 	$TabContainer/System/ScrollContainer/Control/MuteCheckButton.pressed = SettingsManager.get_setting("mute")
 	$TabContainer/System/ScrollContainer/Control/ActionsCheckButton.pressed = SettingsManager.get_setting("actions")
@@ -49,6 +51,10 @@ func _on_AutochangeCheckButton_pressed() -> void:
 func _on_AutoreloadCheckButton_pressed() -> void:
 	audiostreamplayer.play()
 	SettingsManager.save_setting("autoreload", $TabContainer/Gameplay/AutoreloadCheckButton.pressed)
+
+func _on_OptionButton_item_selected(index: int) -> void:
+	audiostreamplayer.play()
+	SettingsManager.save_setting("difficulty", index)
 
 func _on_FullscreenCheckButton_pressed() -> void:
 	audiostreamplayer.play()

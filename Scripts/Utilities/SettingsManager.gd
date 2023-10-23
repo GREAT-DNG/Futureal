@@ -6,13 +6,14 @@ const CONTROLS_PATH: String = "user://controls.json"
 const DEFAULT_SETTINGS_DATA: Dictionary = {
 		"autoreload": true,
 		"autochange": true,
+		"difficulty": 1,
 		"fullscreen": true,
 		"mute": false,
 		"actions": true,
 		"trails": true,
-		"cursor": true,
 		"crt": true,
 		"exactness": false,
+		"cursor": true,
 		"multiplayer": {
 				"nickname": "",
 				"ip": "127.0.0.1",
@@ -28,6 +29,8 @@ func _ready() -> void:
 		print("[" + Time.get_time_string_from_system() + "] Debug on")
 	if OS.has_feature("editor"):
 		print("[" + Time.get_time_string_from_system() + "] Editor on")
+	
+	randomize()
 	
 	if file.file_exists(SETTINGS_PATH):
 		# warning-ignore:return_value_discarded

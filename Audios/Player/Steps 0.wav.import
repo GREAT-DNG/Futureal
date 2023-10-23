@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/Shot.wav-892a9c005625e325bd743ac7dab4f52c.sample"
+path="res://.import/Steps 0.wav-7948f84fd1fdf1e6b840806b9ce1923d.sample"
 
 [deps]
 
-source_file="res://Audios/Guns/3/Shot.wav"
-dest_files=[ "res://.import/Shot.wav-892a9c005625e325bd743ac7dab4f52c.sample" ]
+source_file="res://Audios/Player/Steps 0.wav"
+dest_files=[ "res://.import/Steps 0.wav-7948f84fd1fdf1e6b840806b9ce1923d.sample" ]
 
 [params]
 
@@ -17,7 +17,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop_mode=0
+edit/loop_mode=2
 edit/loop_begin=0
 edit/loop_end=-1
 compress/mode=0

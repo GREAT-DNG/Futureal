@@ -16,10 +16,12 @@ func _ready() -> void:
 	
 	for i in text:
 		$FuturealLabel.text += i
+		$AudioStreamPlayer.stream = load("res://Audios/Keystrokes/" + var2str(int(rand_range(0, 2))) + ".wav")
 		$AudioStreamPlayer.play()
 		yield(get_tree().create_timer(TYPE_TIME), "timeout")
 	
 	yield(get_tree().create_timer(SHOW_TIME), "timeout")
+	
 	process_input = true
 	
 	$AnimationPlayer.play("Flashing")

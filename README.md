@@ -7,33 +7,20 @@
 [![Last master commit](https://img.shields.io/github/last-commit/GREAT-DNG/Futureal/master?label=Last%20master%20commit&color=white)](https://github.com/GREAT-DNG/Futureal/commits/master)
 [![Last develop commit](https://img.shields.io/github/last-commit/GREAT-DNG/Futureal/develop?label=Last%20develop%20commit&color=white)](https://github.com/GREAT-DNG/Futureal/commits/develop)
 
+[Official website](https://great-dng.github.io/futureal-website)
+
 # Futureal
 Futureal is a free and open source simple shooting 2D platformer built on the [Godot Engine](https://github.com/godotengine/godot) (current version is 3.5.2 LTS) using the GDScript language. The project is under development, bugs, crashes and other problems are possible. Suggestions, comments and development assistance are welcome. [TODO list](https://github.com/GREAT-DNG/Futureal/blob/master/TODO.md).
 
 The sources of a small part of the content of the game remained unknown, if something violates your copyright, please report it to [my mail](mailto:greatdng@gmail.com).
 
 ## Getting the game
-You can get the game in two ways: by compiling the game from source (recommended) or by downloading the ready build.
+You can get the game in two ways: by building the game from source (recommended) or by downloading the ready build.
 
 ### Compiling from source (recommended)
-The easiest way to build the game:
-1. Download [sources](https://github.com/GREAT-DNG/Futureal/archive/refs/heads/master.zip).
-2. Download [Godot Engine](https://github.com/godotengine/godot/releases/download/3.5.2-stable/) (without .NET support).
-3. Unpack both archives to a location of your choice.
-4. Run Godot binary from second archive.
-5. In the window that opens, click the `Import` button and select the file `project.godot` from the archive with the game.
-6. After the project is loaded, go to the export settings (`Project` > `Export...`).
-7. Select a platform (`Add...` > `Windows`, `Linux`, or `OSX`). If you get an `Export templates for this platform are missing` error, click `Manage Export Templates`, in the window that opens, click the `Download and Install` button. After installation, close the window and return to the export settings (see point 6).
-8. Click the `Export Project` button and select the path where you want to get the binary (I prefer `/Export/PlatformName/`). Wait for the build to finish.
-
-You now have the latest version of the game. You can learn more about the build process in the [engine documentation](https://docs.godotengine.org/en/3.5/tutorials/export/index.html).
+Read [this manual](https://great-dng.github.io/futureal-website/docs/building-game/).
 
 ### Downloading a ready build
 **Attention: The ready build may be *very* outdated and may not contain the latest game features or is not designed for your platform.**
 
 Download the archive from the [releases page](https://github.com/GREAT-DNG/Futureal/releases), unpack and run the binary.
-
-Enjoy the game!
-
-## Getting help
-You can ask your question in [issues](https://github.com/GREAT-DNG/Futureal/issues).

@@ -176,8 +176,8 @@ func _physics_process(_delta: float) -> void:
 		motion.y += GRAVITATION
 	
 	if is_on_floor():
-		if motion.y > MAX_HARMLESS_GRAVITATION:
-			hit(motion.y / (MAX_HARMLESS_GRAVITATION / 2))
+		if (motion.y > MAX_HARMLESS_GRAVITATION) and SettingsManager.get_setting("difficulty") > 0:
+			hit(motion.y / (MAX_HARMLESS_GRAVITATION / (1.25 * SettingsManager.get_setting("difficulty"))))
 		if motion.y > MAX_GRAVITATION:
 			motion.y = MAX_GRAVITATION
 	
@@ -197,6 +197,7 @@ func _physics_process(_delta: float) -> void:
 		
 		if Input.is_action_pressed("left") and !Input.is_action_pressed("right"):
 			if Input.is_action_pressed("run") and stamina - 1 > 0 and is_on_floor():
+				$WalkAudioStreamPlayer2D.pitch_scale = 1 + (stamina / MAX_STAMINA) / 2
 				if speed + stamina > MAX_SPEED:
 					motion.x = -MAX_SPEED
 				else:
@@ -208,6 +209,7 @@ func _physics_process(_delta: float) -> void:
 					stamina += 2
 		elif Input.is_action_pressed("right") and !Input.is_action_pressed("left"):
 			if Input.is_action_pressed("run") and stamina - 1 > 0 and is_on_floor():
+				$WalkAudioStreamPlayer2D.pitch_scale = 1 + (stamina / MAX_STAMINA) / 2
 				if speed + stamina > MAX_SPEED:
 					motion.x = MAX_SPEED
 				else:
@@ -227,7 +229,7 @@ func _physics_process(_delta: float) -> void:
 			rset("motion", motion)
 	
 	if motion.x != 0 and is_on_floor() and !$WalkAudioStreamPlayer2D.playing:
-		$WalkAudioStreamPlayer2D.stream = load("res://Audios/Player/Steps" + var2str(int(rand_range(0, 2))) + ".wav")
+		$WalkAudioStreamPlayer2D.stream = load("res://Audios/Player/Steps " + var2str(int(rand_range(0, 2))) + ".wav")
 		$WalkAudioStreamPlayer2D.play()
 	elif motion.x == 0 or !is_on_floor():
 		$WalkAudioStreamPlayer2D.stop()
@@ -363,10 +365,14 @@ puppetsync func start_reload() -> void:
 	reload_timer.start(guns_collection[active_gun_number].reload_time)
 
 func reload() -> void:
-	guns_collection[active_gun_number].bullets -= guns_collection[active_gun_number].clip_size
-	guns_collection[active_gun_number].loaded_bullets = guns_collection[active_gun_number].clip_size
+	if SettingsManager.get_setting("difficulty") < 2:
+		guns_collection[active_gun_number].bullets -= guns_collection[active_gun_number].clip_size - guns_collection[active_gun_number].loaded_bullets
+		guns_collection[active_gun_number].loaded_bullets = guns_collection[active_gun_number].clip_size
+	else:
+		guns_collection[active_gun_number].bullets -= guns_collection[active_gun_number].clip_size
+		guns_collection[active_gun_number].loaded_bullets = guns_collection[active_gun_number].clip_size
 	
-	$Gun/AudioStreamPlayer2D.stream = GunsManager.get_gun_shot_sound(active_gun_number)
+	$Gun/AudioStreamPlayer2D.stream = GunsManager.get_gun_shot_sound(guns_collection[active_gun_number].id)
 	
 	if !MultiplayerManager.is_multiplayer() or is_network_master():
 		$GameUI.refresh_panel(health, guns_collection[active_gun_number])

@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/Key.wav-eaa408cf0f744086b00280b47c233616.sample"
+path="res://.import/Steps 2.wav-b07076e7cebc9b579c175f81915d119d.sample"
 
 [deps]
 
-source_file="res://Audios/Key.wav"
-dest_files=[ "res://.import/Key.wav-eaa408cf0f744086b00280b47c233616.sample" ]
+source_file="res://Audios/Player/Steps 2.wav"
+dest_files=[ "res://.import/Steps 2.wav-b07076e7cebc9b579c175f81915d119d.sample" ]
 
 [params]
 
@@ -17,7 +17,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop_mode=0
+edit/loop_mode=2
 edit/loop_begin=0
 edit/loop_end=-1
 compress/mode=0
