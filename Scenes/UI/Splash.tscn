@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/UI/Splash.gd" type="Script" id=1]
 [ext_resource path="res://Shaders/CRT.tres" type="Shader" id=2]
 [ext_resource path="res://Audios/Keystrokes/1.wav" type="AudioStream" id=3]
+[ext_resource path="res://Audios/Backgrounds/Splash.wav" type="AudioStream" id=4]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
@@ -116,3 +117,10 @@ anims/Transition = SubResource( 3 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+volume_db = -2.0
+
+[node name="BackgroundAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -5.0
+autoplay = true
+bus = "Game"

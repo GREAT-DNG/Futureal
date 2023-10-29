@@ -177,7 +177,7 @@ func _physics_process(_delta: float) -> void:
 	
 	if is_on_floor():
 		if (motion.y > MAX_HARMLESS_GRAVITATION) and SettingsManager.get_setting("difficulty") > 0:
-			hit(motion.y / (MAX_HARMLESS_GRAVITATION / (1.25 * SettingsManager.get_setting("difficulty"))))
+			hit(motion.y / (MAX_HARMLESS_GRAVITATION / (1.25 * SettingsManager.get_setting("difficulty"))), false)
 		if motion.y > MAX_GRAVITATION:
 			motion.y = MAX_GRAVITATION
 	
@@ -298,7 +298,7 @@ remotesync func heal(power: float) -> void:
 	elif !is_network_master():
 		$MultiplayerStats.refresh_stats(health)
 
-remotesync func hit(power: float) -> void:
+remotesync func hit(power: float, kick: bool = true) -> void:
 	if immortality_mode:
 		return
 	
@@ -317,7 +317,7 @@ remotesync func hit(power: float) -> void:
 	if SettingsManager.get_setting("actions"):
 		$ActionColorRect.show_hit()
 	
-	if is_on_floor():
+	if is_on_floor() and kick:
 		additional_motion.y -= power * 150
 	
 	if !MultiplayerManager.is_multiplayer() or is_network_master():

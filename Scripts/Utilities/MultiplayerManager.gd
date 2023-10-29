@@ -12,8 +12,15 @@ const LEVEL1: Dictionary = {
 	"used_spawn_positions": [],
 	}
 
+const LEVEL2: Dictionary = {
+	"max_players": 4,
+	"spawn_positions": [Vector2(-850, 100), Vector2(-850, 300), Vector2(850, 100), Vector2(850, 300)],
+	"used_spawn_positions": [],
+	}
+
 const LEVELS: Dictionary = {
 	"Level1": LEVEL1,
+	"Level2": LEVEL2,
 	}
 
 const PORT: int = 49094
@@ -158,7 +165,8 @@ remotesync func killed(killer_id: int) -> void:
 	if killer_id == get_tree().get_network_unique_id():
 		kills += 1
 	else:
-		players[killer_id].kills += 1
+		if players.has(killer_id):
+			players[killer_id].kills += 1
 	emit_signal("game_info_updated")
 	
 	# Refactoring

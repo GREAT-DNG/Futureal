@@ -1,9 +1,16 @@
-[gd_resource type="AudioBusLayout" load_steps=2 format=2]
+[gd_resource type="AudioBusLayout" load_steps=3 format=2]
 
 [sub_resource type="AudioEffectEQ" id=1]
 resource_name = "EQ"
-band_db/3200_hz = -5.0
-band_db/10000_hz = -10.0
+band_db/3200_hz = -2.5
+band_db/10000_hz = -5.0
+
+[sub_resource type="AudioEffectReverb" id=2]
+resource_name = "Reverb"
+room_size = 0.3
+damping = 0.6
+spread = 0.5
+wet = 0.3
 
 [resource]
 bus/0/effect/0/effect = SubResource( 1 )
@@ -14,3 +21,5 @@ bus/1/mute = false
 bus/1/bypass_fx = false
 bus/1/volume_db = 0.0
 bus/1/send = "Master"
+bus/1/effect/0/effect = SubResource( 2 )
+bus/1/effect/0/enabled = true

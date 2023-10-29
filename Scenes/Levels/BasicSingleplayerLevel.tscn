@@ -6,7 +6,7 @@
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Lamps/Lamp1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Portal.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Audios/Level Background.wav" type="AudioStream" id=7]
+[ext_resource path="res://Audios/Backgrounds/Level.wav" type="AudioStream" id=7]
 [ext_resource path="res://Scenes/Enemies/Enemy1.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Items/MedChest.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Items/BulletsPack.tscn" type="PackedScene" id=10]

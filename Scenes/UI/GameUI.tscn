@@ -385,9 +385,9 @@ hide_folding = true
 hide_root = true
 
 [node name="MessageLabel" type="Label" parent="."]
-margin_left = -290.0
+margin_left = -340.0
 margin_top = 210.0
-margin_right = 290.0
+margin_right = 340.0
 margin_bottom = 280.0
 theme = ExtResource( 1 )
 align = 1
