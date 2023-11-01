@@ -12,4 +12,6 @@ mastersync func refresh_stats(health: float) -> void:
 	if SettingsManager.get_setting("exactness"):
 		$HealthLabel.text = var2str(health)
 	else:
+		if $HealthProgressBar.max_value < health:
+			$HealthProgressBar.max_value = health
 		$HealthProgressBar.value = health

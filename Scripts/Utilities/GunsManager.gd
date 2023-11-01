@@ -94,7 +94,7 @@ const GUN6: Dictionary = {
 
 const GUNS: Array = [GUN0, GUN1, GUN2, GUN3, GUN4, GUN5, GUN6]
 
-# Returns waepon data
+# Returns gun data
 func get_gun(gun_id: int) -> Dictionary:
 	return GUNS[gun_id].duplicate()
 

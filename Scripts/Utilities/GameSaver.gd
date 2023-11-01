@@ -26,6 +26,7 @@ func save(level_number: int, health: float, guns_collection: Array, active_gun_n
 func get_health(level_number: int) -> float:
 	# warning-ignore:return_value_discarded
 	save_file.open_encrypted_with_pass(PATH + "F" + var2str(level_number), File.READ, PASSWORD)
+	print("[" + Time.get_time_string_from_system() + "] Loaded health from save " + var2str(level_number))
 	return parse_json(save_file.get_line()).health
 
 func get_guns_collection(level_number: int) -> Array:
@@ -39,11 +40,13 @@ func get_guns_collection(level_number: int) -> Array:
 		result[i].loaded_bullets = int(result[i].loaded_bullets)
 		result[i].clip_size = int(result[i].clip_size)
 	
+	print("[" + Time.get_time_string_from_system() + "] Loaded guns collection from save " + var2str(level_number))
 	return result
 
 func get_active_gun_number(level_number: int) -> int:
 	# warning-ignore:return_value_discarded
 	save_file.open_encrypted_with_pass(PATH + "F" + var2str(level_number), File.READ, PASSWORD)
+	print("[" + Time.get_time_string_from_system() + "] Loaded active gun number from save " + var2str(level_number))
 	return int(parse_json(save_file.get_line()).active_gun_number)
 
 func is_level_complete(level_number: int) -> bool:

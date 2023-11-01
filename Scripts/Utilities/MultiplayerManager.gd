@@ -26,6 +26,7 @@ const LEVELS: Dictionary = {
 const PORT: int = 49094
 
 var level: String
+var server_difficulty = 0
 var nickname: String = ""
 var kills: int = 0
 var deaths: int = 0
@@ -44,6 +45,8 @@ func _ready() -> void:
 
 func _on_SceneTree_network_peer_connected(id: int) -> void:
 	rpc_id(id, "register_player", nickname)
+	if get_tree().is_network_server():
+		rpc_id(id, "set_difficulty", SettingsManager.get_setting("difficulty"))
 
 func _on_SceneTree_network_peer_disconnected(id: int) -> void:
 	if !players.has(id):
@@ -67,6 +70,9 @@ remote func check_game_version(game_version: String) -> void:
 	if game_version != SettingsManager.GAME_VERSION:
 		get_tree().network_peer.disconnect_peer(get_tree().get_rpc_sender_id())
 
+remote func set_difficulty(difficulty: int):
+	server_difficulty = difficulty
+
 remote func register_player(new_player_nickname: String) -> void:
 	players[get_tree().get_rpc_sender_id()] = {
 		"nickname": new_player_nickname,
@@ -82,6 +88,7 @@ func is_multiplayer() -> bool:
 	return get_tree().has_network_peer() and get_tree().get_network_peer().get_connection_status() == NetworkedMultiplayerPeer.CONNECTION_CONNECTED
 
 func start_server(new_level: String, new_nickname: String) -> void:
+	server_difficulty = SettingsManager.get_setting("difficulty")
 	nickname = new_nickname
 	level = new_level
 	var peer: NetworkedMultiplayerENet = NetworkedMultiplayerENet.new()
@@ -170,12 +177,13 @@ remotesync func killed(killer_id: int) -> void:
 	emit_signal("game_info_updated")
 	
 	# Refactoring
-	if get_tree().get_rpc_sender_id() == get_tree().get_network_unique_id():
-		get_tree().get_root().find_node("*Level*", false, false).get_node("Players/" + var2str(get_tree().get_network_unique_id()) + "/GameUI/MessageLabel").show_message(players[killer_id].nickname + " kill " + nickname)
-	elif killer_id == get_tree().get_network_unique_id():
-		get_tree().get_root().find_node("*Level*", false, false).get_node("Players/" + var2str(get_tree().get_network_unique_id()) + "/GameUI/MessageLabel").show_message(nickname + " kill " + players[get_tree().get_rpc_sender_id()].nickname)
-	else:
-		get_tree().get_root().find_node("*Level*", false, false).get_node("Players/" + var2str(get_tree().get_network_unique_id()) + "/GameUI/MessageLabel").show_message(players[killer_id].nickname + " kill " + players[get_tree().get_rpc_sender_id()].nickname)
+	if players.has(killer_id):
+		if get_tree().get_rpc_sender_id() == get_tree().get_network_unique_id():
+			get_tree().get_root().find_node("*Level*", false, false).get_node("Players/" + var2str(get_tree().get_network_unique_id()) + "/GameUI/MessageLabel").show_message(players[killer_id].nickname + " kill " + nickname)
+		elif killer_id == get_tree().get_network_unique_id():
+			get_tree().get_root().find_node("*Level*", false, false).get_node("Players/" + var2str(get_tree().get_network_unique_id()) + "/GameUI/MessageLabel").show_message(nickname + " kill " + players[get_tree().get_rpc_sender_id()].nickname)
+		else:
+			get_tree().get_root().find_node("*Level*", false, false).get_node("Players/" + var2str(get_tree().get_network_unique_id()) + "/GameUI/MessageLabel").show_message(players[killer_id].nickname + " kill " + players[get_tree().get_rpc_sender_id()].nickname)
 
 remotesync func dead() -> void:
 	if get_tree().get_rpc_sender_id() == get_tree().get_network_unique_id():

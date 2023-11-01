@@ -6,6 +6,7 @@ const JUMP: float = 500.0
 const ALLOWABLE_ERROR: Vector2 = Vector2(1, 1)
 
 export(float) var health = 10.0
+export(float) var health_difference = 2.5
 export(float) var speed = 100.0
 export(float) var lethargy = 1.0
 export(int, "Desert Eagle", "Mac-10", "HK MP5", "AK47", "M4A1", "Benelli M4 Super 90", "M249 SAW") var gun_id
@@ -55,6 +56,11 @@ func _ready() -> void:
 	if path.size() != 0 or mode > 0:
 		speed += rand_range(-10, 10)
 		run_wait_time += rand_range(-1.5, 1.5)
+	
+	if SettingsManager.get_setting("difficulty") == 0:
+		health -= health_difference
+	elif SettingsManager.get_setting("difficulty") == 2:
+		health += health_difference
 	
 	if !SettingsManager.get_setting("exactness"):
 		$HealthProgressBar.max_value = health

@@ -3,7 +3,7 @@ extends Control
 const START_TIME: float = 0.25
 const TYPE_TIME: float = 0.15
 const SHOW_TIME: float = 0.5
-const text: String = "Futureal"
+const TEXT: String = "Futureal"
 
 var process_input: bool = false
 
@@ -14,7 +14,7 @@ func _ready() -> void:
 	
 	yield(get_tree().create_timer(START_TIME), "timeout")
 	
-	for i in text:
+	for i in TEXT:
 		$FuturealLabel.text += i
 		$AudioStreamPlayer.stream = load("res://Audios/Keystrokes/" + var2str(int(rand_range(0, 2))) + ".wav")
 		$AudioStreamPlayer.play()

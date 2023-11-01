@@ -8,6 +8,8 @@ const MAX_HEALTH: float = 25.0
 const MAX_STAMINA: float = 200.0
 const MAX_SPEED: float = 250.0
 
+var difficulty = 0
+
 puppet var motion: Vector2 = Vector2()
 var additional_motion: Vector2 = Vector2()
 var speed: float = 160.0
@@ -34,6 +36,11 @@ func _ready() -> void:
 	
 	if !MultiplayerManager.is_multiplayer() or is_network_master():
 		$GameUI/AnimationPlayer.play_backwards("Transition")
+	
+	if MultiplayerManager.is_multiplayer() and is_network_master():
+		difficulty = MultiplayerManager.server_difficulty
+	elif !MultiplayerManager.is_multiplayer():
+		difficulty = SettingsManager.get_setting("difficulty")
 	
 	if MultiplayerManager.is_multiplayer():
 		rset_config("position", MultiplayerAPI.RPC_MODE_PUPPETSYNC)
@@ -113,10 +120,13 @@ func _input(event: InputEvent) -> void:
 			rpc("change_gun", guns_collection[active_gun_number].id)
 	
 	if event.is_action_pressed("reload"):
-		if !MultiplayerManager.is_multiplayer():
-			start_reload()
-		elif is_network_master():
-			rpc("start_reload")
+		if guns_collection[active_gun_number].loaded_bullets == guns_collection[active_gun_number].clip_size:
+			$GameUI/MessageLabel.show_message("Already reloaded")
+		else:
+			if !MultiplayerManager.is_multiplayer():
+				start_reload()
+			elif is_network_master():
+				rpc("start_reload")
 	
 	if event.is_action_pressed("pause"):
 		$GameUI/PausePanel.show()
@@ -176,8 +186,8 @@ func _physics_process(_delta: float) -> void:
 		motion.y += GRAVITATION
 	
 	if is_on_floor():
-		if (motion.y > MAX_HARMLESS_GRAVITATION) and SettingsManager.get_setting("difficulty") > 0:
-			hit(motion.y / (MAX_HARMLESS_GRAVITATION / (1.25 * SettingsManager.get_setting("difficulty"))), false)
+		if (motion.y > MAX_HARMLESS_GRAVITATION) and difficulty > 0:
+			hit(motion.y / (MAX_HARMLESS_GRAVITATION / (1.25 * difficulty)), false)
 		if motion.y > MAX_GRAVITATION:
 			motion.y = MAX_GRAVITATION
 	
@@ -365,7 +375,7 @@ puppetsync func start_reload() -> void:
 	reload_timer.start(guns_collection[active_gun_number].reload_time)
 
 func reload() -> void:
-	if SettingsManager.get_setting("difficulty") < 2:
+	if difficulty < 2:
 		guns_collection[active_gun_number].bullets -= guns_collection[active_gun_number].clip_size - guns_collection[active_gun_number].loaded_bullets
 		guns_collection[active_gun_number].loaded_bullets = guns_collection[active_gun_number].clip_size
 	else:
@@ -395,10 +405,10 @@ puppetsync func shot(mouse_position_from_zero: Vector2) -> void:
 	
 	if !endless_bullets_mode:
 		guns_collection[active_gun_number].loaded_bullets -= 1
-		if !MultiplayerManager.is_multiplayer():
+		if !MultiplayerManager.is_multiplayer() or is_network_master():
 			$GameUI.refresh_panel(health, guns_collection[active_gun_number])
-		elif is_network_master():
-			rset("guns_collection", guns_collection)
+			if is_network_master():
+				rset("guns_collection", guns_collection)
 	
 	if SettingsManager.get_setting("trails"):
 		var trail = load("res://Scenes/Trail.tscn").instance()
