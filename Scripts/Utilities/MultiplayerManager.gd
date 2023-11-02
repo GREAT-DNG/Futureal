@@ -164,6 +164,7 @@ remote func prepare_game_done() -> void:
 remotesync func run_game() -> void:
 	emit_signal("game_started")
 	get_tree().get_root().get_node("Menu").hide()
+	get_tree().get_root().get_node("Menu/BackgroundAudioStreamPlayer").stop()
 	get_tree().paused = false
 	
 	print("[" + Time.get_time_string_from_system() + "] Multiplayer game started")
@@ -200,6 +201,7 @@ remotesync func end_game() -> void:
 	get_tree().get_root().get_node("Menu/LobbyPanel/OutputRichTextLabel").text = ""
 	get_tree().get_root().get_node("Menu/PlayPanel").show()
 	get_tree().get_root().get_node("Menu").show()
+	get_tree().get_root().get_node("Menu/BackgroundAudioStreamPlayer").play()
 	get_tree().get_root().find_node("*Level*", false, false).queue_free()
 	for i in players:
 		players[i].ready = false

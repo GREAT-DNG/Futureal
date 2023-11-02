@@ -59,9 +59,15 @@ respawning = true
 
 [node name="BulletsPack3" parent="BulletsPacks" instance=ExtResource( 6 )]
 position = Vector2( -150, -475 )
+clips = 2
+respawning = true
+respawning_time = 25.0
 
 [node name="BulletsPack4" parent="BulletsPacks" instance=ExtResource( 6 )]
 position = Vector2( 150, -475 )
+clips = 2
+respawning = true
+respawning_time = 25.0
 
 [node name="Guns" type="Node2D" parent="."]
 
@@ -88,6 +94,8 @@ respawning = true
 [node name="Gun5" parent="Guns" instance=ExtResource( 4 )]
 position = Vector2( 0, -550 )
 gun_id = 5
+respawning = true
+respawning_time = 30.0
 
 [node name="Lamps" type="Node2D" parent="."]
 
