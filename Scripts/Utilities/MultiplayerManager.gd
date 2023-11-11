@@ -196,6 +196,8 @@ remotesync func dead() -> void:
 remotesync func end_game() -> void:
 	get_tree().refuse_new_network_connections = false
 	stop()
+	kills = 0
+	deaths = 0
 	get_tree().get_root().get_node("Menu/LobbyPanel").hide()
 	get_tree().get_root().get_node("Menu/PlayPanel/MultiplayerUI").unlock_client_ui()
 	get_tree().get_root().get_node("Menu/LobbyPanel/OutputRichTextLabel").text = ""
