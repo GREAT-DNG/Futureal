@@ -320,8 +320,7 @@ remotesync func hit(power: float, kick: bool = true) -> void:
 			$GameUI.player_killed()
 			get_tree().paused = true
 		elif is_network_master():
-			MultiplayerManager.rpc("dead")
-			MultiplayerManager.rpc("killed", get_tree().get_rpc_sender_id())
+			MultiplayerManager.rpc("dead", get_tree().get_rpc_sender_id())
 			rpc("respawn")
 	
 	if SettingsManager.get_setting("actions"):
@@ -407,7 +406,7 @@ puppetsync func shot(mouse_position_from_zero: Vector2) -> void:
 		guns_collection[active_gun_number].loaded_bullets -= 1
 		if !MultiplayerManager.is_multiplayer() or is_network_master():
 			$GameUI.refresh_panel(health, guns_collection[active_gun_number])
-			if is_network_master():
+			if MultiplayerManager.is_multiplayer() and is_network_master():
 				rset("guns_collection", guns_collection)
 	
 	if SettingsManager.get_setting("trails"):
@@ -462,6 +461,7 @@ puppetsync func respawn() -> void:
 	if is_network_master():
 		$GameUI.refresh_panel(health, guns_collection[active_gun_number])
 	elif !is_network_master():
+		$MultiplayerStats/HealthProgressBar.value = health
 		$MultiplayerStats.rpc("refresh_stats", health)
 
 func game_complete() -> void:
@@ -473,7 +473,7 @@ func game_complete() -> void:
 	final_timer.pause_mode = Node.PAUSE_MODE_PROCESS
 	final_timer.one_shot = true
 	# warning-ignore:return_value_discarded
-	final_timer.connect("timeout", self, "load_main_menu") # get_tree().create_timer()
+	final_timer.connect("timeout", self, "load_main_menu")
 	final_timer.start(5)
 
 func load_main_menu() -> void:

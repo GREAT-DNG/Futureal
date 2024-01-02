@@ -169,28 +169,19 @@ remotesync func run_game() -> void:
 	
 	print("[" + Time.get_time_string_from_system() + "] Multiplayer game started")
 
-remotesync func killed(killer_id: int) -> void:
-	if killer_id == get_tree().get_network_unique_id():
-		kills += 1
-	else:
-		if players.has(killer_id):
-			players[killer_id].kills += 1
-	emit_signal("game_info_updated")
-	
-	# Refactoring
-	if players.has(killer_id):
-		if get_tree().get_rpc_sender_id() == get_tree().get_network_unique_id():
-			get_tree().get_root().find_node("*Level*", false, false).get_node("Players/" + var2str(get_tree().get_network_unique_id()) + "/GameUI/MessageLabel").show_message(players[killer_id].nickname + " kill " + nickname)
-		elif killer_id == get_tree().get_network_unique_id():
-			get_tree().get_root().find_node("*Level*", false, false).get_node("Players/" + var2str(get_tree().get_network_unique_id()) + "/GameUI/MessageLabel").show_message(nickname + " kill " + players[get_tree().get_rpc_sender_id()].nickname)
-		else:
-			get_tree().get_root().find_node("*Level*", false, false).get_node("Players/" + var2str(get_tree().get_network_unique_id()) + "/GameUI/MessageLabel").show_message(players[killer_id].nickname + " kill " + players[get_tree().get_rpc_sender_id()].nickname)
-
-remotesync func dead() -> void:
+remotesync func dead(killer_id: int) -> void:
 	if get_tree().get_rpc_sender_id() == get_tree().get_network_unique_id():
+		get_tree().get_root().find_node("*Level*", false, false).get_node("Players/" + var2str(get_tree().get_network_unique_id()) + "/GameUI/MessageLabel").show_message(players[killer_id].nickname + " killed you")
 		deaths += 1
 	else:
 		players[get_tree().get_rpc_sender_id()].deaths += 1
+	
+	if killer_id == get_tree().get_network_unique_id():
+		kills += 1
+		get_tree().get_root().find_node("*Level*", false, false).get_node("Players/" + var2str(get_tree().get_network_unique_id()) + "/GameUI/MessageLabel").show_message("You killed " + players[get_tree().get_rpc_sender_id()].nickname)
+	else:
+		players[killer_id].kills += 1
+	
 	emit_signal("game_info_updated")
 
 remotesync func end_game() -> void:

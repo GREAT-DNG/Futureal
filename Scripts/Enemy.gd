@@ -20,7 +20,7 @@ var additional_motion: Vector2 = Vector2()
 var seen = false
 
 var next_position_index: int = 0
-var run_wait_time: float = 5.0 # the time to wait before moving to the next point of path
+var run_wait_time: float = 5.0 # The time to wait before moving to the next point of path
 
 var gun: Dictionary
 
