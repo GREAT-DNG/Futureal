@@ -104,6 +104,7 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 10 )
 animation = "Wait"
+frame = 1
 playing = true
 
 [node name="MultiplayerStats" type="Control" parent="."]

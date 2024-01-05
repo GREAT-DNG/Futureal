@@ -4635,7 +4635,7 @@ rect_min_size = Vector2( 1500, 740 )
 rect_scale = Vector2( 0.5, 0.5 )
 text = "MIT License
 
-Copyright © 2022-2023 GREAT DNG
+Copyright © 2022-2024 GREAT DNG
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the \"Software\"), to deal
